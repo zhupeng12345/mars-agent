@@ -1,0 +1,63 @@
+# Local archive cache and generated Python artifacts
+baiduwangpan/**/*.zip
+baiduwangpan/EduAgent配套资料/
+baiduwangpan/_extracted/
+baiduwangpan/_reference/
+baiduwangpan/**/node_modules/
+baiduwangpan/**/__pycache__/
+baiduwangpan/**/*.pyc
+baiduwangpan/*.py
+baiduwangpan/*.pyc
+baiduwangpan/*.db
+baiduwangpan/*.jsonl
+baiduwangpan/**/.env.local
+
+# Runtime records written by the local inspection workflow
+Code/agentic/runtime_data/
+Code/runtime_data/
+
+# Local datasets and media. Keep evaluation schemas/fixtures under Code/data/evaluation.
+/Code/data/v1/
+/Code/data/video/
+/Code/data/火眼分类图片帧/
+/Code/data/**/*.mp4
+/Code/data/**/*.avi
+/Code/data/**/*.mov
+/Code/data/**/*.mkv
+/Code/data/**/*.jpg
+/Code/data/**/*.jpeg
+/Code/data/**/*.png
+/Code/data/**/*.pkl
+/Code/data/**/*.npz
+/Code/data/**/*.pt
+/Code/data/**/*.pth
+/Code/data/**/*.ckpt
+!/Code/data/evaluation/
+!/Code/data/evaluation/**
+/Code/data/evaluation/visual_windows/
+/Code/data/evaluation/_smoke/
+
+# Generated evaluation/runtime snapshots. Curated results are documented in Code/docs.
+/runtime_data/
+/Code/runtime_data/
+!/Code/runtime_data/README.md
+
+# Local browser/PPT inspection caches and reference archives.
+/.tmp_*/
+/*.zip
+/.pptx-validation-receipt.json
+/baiduwangpan/
+/Code/docs/**/*.pptx
+/Code/docs/**/*.docx
+/Code/report_assets/**/*.pptx
+/Code/report_assets/**/*.docx
+**/.pptx_review/
+
+# Secrets and local databases.
+/.env
+/.env.*
+!.env.example
+*.sqlite
+*.sqlite3
+*.db
+*.log

@@ -1,0 +1,17 @@
+{
+  "asset_id": "asset-demo-c6fd5140ca49-contact-sheet",
+  "title": "真实视频多帧 ROI 证据",
+  "source_files": [
+    "D:\\py_daima\\mars-agent\\Code\\data\\video\\偏高.mp4"
+  ],
+  "run_id": "demo-c6fd5140ca49",
+  "model_profile": "fgmvae-t-image-supervised-v1",
+  "knowledge_version": "v1",
+  "script_version": "demo-run-1",
+  "generated_at": "2026-11-08T08:04:40.541860+00:00",
+  "width": 448,
+  "height": 1792,
+  "status": "flow_validation",
+  "script": "agentic.scripts.demo_run",
+  "dimensions_verified_at": "2026-11-08T08:55:13.440177+00:00"
+}

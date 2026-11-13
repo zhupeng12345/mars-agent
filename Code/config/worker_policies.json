@@ -1,0 +1,33 @@
+{
+  "schema_version": "worker-policies-1",
+  "default": {
+    "timeout_s": 30,
+    "retries": 1,
+    "backoff_seconds": 0.1,
+    "max_backoff_seconds": 1.0,
+    "retryable_errors": ["*"]
+  },
+  "workers": {
+    "visual_review": {
+      "timeout_s": 45,
+      "policy_id": "visual-review-v1"
+    },
+    "evidence_quality": {
+      "timeout_s": 20,
+      "policy_id": "evidence-quality-v1"
+    },
+    "knowledge_rag": {
+      "timeout_s": 20,
+      "retries": 1,
+      "policy_id": "knowledge-rag-v1"
+    },
+    "case_compare": {
+      "timeout_s": 20,
+      "policy_id": "case-compare-v1"
+    },
+    "process_state": {
+      "timeout_s": 30,
+      "policy_id": "process-state-v1"
+    }
+  }
+}

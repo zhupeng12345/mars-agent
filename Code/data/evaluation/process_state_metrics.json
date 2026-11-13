@@ -1,0 +1,110 @@
+{
+  "schema_version": "process-evaluation-1",
+  "split": "test",
+  "split_count": 827,
+  "models": {
+    "1DCNN": {
+      "model": "1DCNN",
+      "n": 827,
+      "positive_rate": 0.5368802902055623,
+      "threshold": 0.5,
+      "roc_auc": 0.5267976854138734,
+      "pr_auc": 0.5607784155752565,
+      "calibration": {
+        "brier": 0.33113885875329224,
+        "ece": 0.25678588991208806
+      },
+      "brier": 0.33113885875329224,
+      "event_count": 25,
+      "event_hits": 23,
+      "event_recall": 0.92,
+      "median_lead_minutes": 2.0,
+      "lead_samples": 25,
+      "prediction_source": "step3_baseline_202111/1DCNN/test_pred.csv",
+      "label_match": true,
+      "reported_metrics": {
+        "roc_auc": 0.5267976854138734,
+        "pr_auc": 0.5624220554446266,
+        "f1@0.5": 0.6418338108882522
+      }
+    },
+    "CNN": {
+      "model": "CNN",
+      "n": 827,
+      "positive_rate": 0.5368802902055623,
+      "threshold": 0.5,
+      "roc_auc": 0.5419283513278291,
+      "pr_auc": 0.5880965974244147,
+      "calibration": {
+        "brier": 0.2988364945144008,
+        "ece": 0.2095564776638452
+      },
+      "brier": 0.2988364945144008,
+      "event_count": 25,
+      "event_hits": 22,
+      "event_recall": 0.88,
+      "median_lead_minutes": 2.0,
+      "lead_samples": 25,
+      "prediction_source": "step3_baseline_202111/CNN/test_pred.csv",
+      "label_match": true,
+      "reported_metrics": {
+        "roc_auc": 0.541928351327829,
+        "pr_auc": 0.5906230380870529,
+        "f1@0.5": 0.6555246053853296
+      }
+    },
+    "LSTM": {
+      "model": "LSTM",
+      "n": 827,
+      "positive_rate": 0.5368802902055623,
+      "threshold": 0.5,
+      "roc_auc": 0.43708395079152257,
+      "pr_auc": 0.4799300439778024,
+      "calibration": {
+        "brier": 0.26752729313406504,
+        "ece": 0.10359362859679826
+      },
+      "brier": 0.26752729313406504,
+      "event_count": 25,
+      "event_hits": 21,
+      "event_recall": 0.84,
+      "median_lead_minutes": 2.0,
+      "lead_samples": 25,
+      "prediction_source": "step3_baseline_202111/LSTM/test_pred.csv",
+      "label_match": true,
+      "reported_metrics": {
+        "roc_auc": 0.4370839507915226,
+        "pr_auc": 0.4813204432509118,
+        "f1@0.5": 0.599624060150376,
+        "cm@0.5": [
+          [
+            82,
+            301
+          ],
+          [
+            125,
+            319
+          ]
+        ],
+        "best_t_from_val": 0.36000000000000004,
+        "f1@best_t": 0.6986624704956726,
+        "cm@best_t": [
+          [
+            0,
+            383
+          ],
+          [
+            0,
+            444
+          ]
+        ]
+      }
+    }
+  },
+  "process_missing": [
+    "video_mapping"
+  ],
+  "alignment_quality": "unknown",
+  "visual_process_fusion_evaluated": false,
+  "video_classification_improvement_claimed": false
+}

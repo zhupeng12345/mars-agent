@@ -1,0 +1,16 @@
+{
+  "asset_id": "asset-demo-cb3c0e7a3dd7-contact-sheet",
+  "title": "真实视频多帧 ROI 证据",
+  "source_files": [
+    "D:\\py_daima\\mars-agent\\Code\\data\\video\\正常.mp4"
+  ],
+  "run_id": "demo-cb3c0e7a3dd7",
+  "model_profile": "fgmvae-t-smoke-untrained-v1",
+  "knowledge_version": "knowledge-pack-v1",
+  "script_version": "demo-run-1",
+  "generated_at": "2026-11-07T21:32:22.109764+00:00",
+  "width": 448,
+  "height": 1792,
+  "status": "flow_validation",
+  "dimensions_verified_at": "2026-11-08T08:55:13.447192+00:00"
+}

@@ -16,3 +16,32 @@ qt_interface/history_record.json
 .vscode/
 .idea/
 .DS_Store
+
+# Local inspection runtime state
+agentic/runtime_data/
+
+# Repository release excludes local/raw data; the root .gitignore contains the
+# same policy for paths outside Code.
+data/v1/
+data/video/
+data/火眼分类图片帧/
+data/**/*.mp4
+data/**/*.avi
+data/**/*.mov
+data/**/*.mkv
+data/**/*.jpg
+data/**/*.jpeg
+data/**/*.png
+data/**/*.pkl
+data/**/*.npz
+data/**/*.pt
+data/**/*.pth
+data/**/*.ckpt
+!data/evaluation/
+!data/evaluation/**
+data/evaluation/visual_windows/
+data/evaluation/_smoke/
+runtime_data/
+docs/**/*.pptx
+docs/**/*.docx
+**/.pptx_review/

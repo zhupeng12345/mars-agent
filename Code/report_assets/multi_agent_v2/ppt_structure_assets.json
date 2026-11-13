@@ -1,0 +1,483 @@
+{
+  "schema_version": "ppt-structure-assets-1",
+  "run_id": "ppt-demo-structure-001",
+  "status": "flow_validation",
+  "asset_count": 25,
+  "assets": [
+    {
+      "asset_id": "asset-page-01",
+      "page": 1,
+      "title": "项目目标",
+      "source_files": [
+        "agentic/orchestration/diagnosis_graph.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:47.562959+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "aca8d8584fb94a51",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-02",
+      "page": 2,
+      "title": "巡检输入",
+      "source_files": [
+        "agentic/media/normalize.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:47.633622+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "a8e79768d34c76cf",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-03",
+      "page": 3,
+      "title": "火眼视觉证据",
+      "source_files": [
+        "agentic/agents/visual_evidence.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:47.692388+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "89d978ac59486542",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-04",
+      "page": 4,
+      "title": "多帧窗口",
+      "source_files": [
+        "agentic/models/roi_sequence.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:47.748247+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "94379f3c346aaa50",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-05",
+      "page": 5,
+      "title": "质量门控",
+      "source_files": [
+        "agentic/agents/image_quality.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:47.804469+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "ededd1d0cbbe3e66",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-06",
+      "page": 6,
+      "title": "标注与数据协议",
+      "source_files": [
+        "agentic/platform/contracts.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:47.864007+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "6ac624315a33d82b",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-07",
+      "page": 7,
+      "title": "总体架构",
+      "source_files": [
+        "agentic/orchestration/diagnosis_graph.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:47.923117+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "de0e501ee4cfa3a7",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-08",
+      "page": 8,
+      "title": "任务状态机",
+      "source_files": [
+        "agentic/platform/tickets.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:47.981223+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "6329adc827b55666",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-09",
+      "page": 9,
+      "title": "Process State Agent",
+      "source_files": [
+        "agentic/agents/process_state.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:48.040332+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "7b16bf614523cf8a",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-10",
+      "page": 10,
+      "title": "14维变量分组",
+      "source_files": [
+        "data/v1/step2_ew_202111"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:48.099562+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "e39a12d2b0697bd2",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-11",
+      "page": 11,
+      "title": "非配对数据治理",
+      "source_files": [
+        "agentic/agents/process_state.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:48.181264+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "f785e5103644dd75",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-12",
+      "page": 12,
+      "title": "F-GMVAE-T",
+      "source_files": [
+        "agentic/models/fgmvae_temporal.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:48.270665+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "da3ad1de551f241d",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-13",
+      "page": 13,
+      "title": "时序编码器",
+      "source_files": [
+        "agentic/models/temporal.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:48.349652+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "0bc21c8919c41171",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-14",
+      "page": 14,
+      "title": "JEV 路由",
+      "source_files": [
+        "agentic/platform/jev/router.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:48.419497+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "60b21fac9b4a5a2e",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-15",
+      "page": 15,
+      "title": "simple_loop",
+      "source_files": [
+        "agentic/orchestration/diagnosis_graph.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:48.494521+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "6044f73bbe98224e",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-16",
+      "page": 16,
+      "title": "full_loop 并行协作",
+      "source_files": [
+        "agentic/orchestration/diagnosis_graph.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:48.576314+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "6c0e4138272e61b5",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-17",
+      "page": 17,
+      "title": "知识 RAG",
+      "source_files": [
+        "agentic/platform/knowledge.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:48.655724+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "bf9d03dd42918d64",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-18",
+      "page": 18,
+      "title": "特殊案例库",
+      "source_files": [
+        "agentic/platform/case_memory.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:48.742812+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "02f2af4c2f1b8a59",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-19",
+      "page": 19,
+      "title": "证据复核",
+      "source_files": [
+        "agentic/review.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:48.822223+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "6fee6522d7717154",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-20",
+      "page": 20,
+      "title": "LLM Gateway",
+      "source_files": [
+        "agentic/platform/llm_gateway.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:48.896287+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "d434b65340d42f7a",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-21",
+      "page": 21,
+      "title": "人工 interrupt/resume",
+      "source_files": [
+        "agentic/orchestration/diagnosis_graph.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:48.969505+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "0268945435fb86a3",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-22",
+      "page": 22,
+      "title": "审计与报告",
+      "source_files": [
+        "agentic/platform/hitl.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:49.039415+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "ac16a045190f9d47",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-23",
+      "page": 23,
+      "title": "RSI 候选演化",
+      "source_files": [
+        "agentic/rsi/"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:49.114152+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "2b757aa945c81689",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-24",
+      "page": 24,
+      "title": "冻结评测与消融",
+      "source_files": [
+        "agentic/evaluation/run_all.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:49.188714+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "d570bcab327befc8",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    },
+    {
+      "asset_id": "asset-page-25",
+      "page": 25,
+      "title": "端到端演示",
+      "source_files": [
+        "agentic/scripts/demo_run.py"
+      ],
+      "run_id": "ppt-demo-structure-001",
+      "model_profile": "presentation_structure_validation_v1",
+      "knowledge_version": "knowledge-pack-v1",
+      "generated_at": "2026-11-08T17:54:49.263461+00:00",
+      "width": 1600,
+      "height": 900,
+      "status": "flow_validation",
+      "script": "agentic.scripts.build_ppt_visual_assets",
+      "script_version": "ppt-assets-1",
+      "content_sha256": "90c451830f1cb4d6",
+      "claim_policy": "structure validation only; no visual accuracy or production control claim"
+    }
+  ]
+}

@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="1296pt" height="432pt" viewBox="0 0 1296 432" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-11-10T15:30:58.767629</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.2, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 432
+L 1296 432
+L 1296 0
+L 0 0
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 90.72 306.72
+L 712.8 306.72
+L 712.8 120.96
+L 90.72 120.96
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1"/>
+     <g id="text_1">
+      <text style="font-size: 9.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #69778c" x="90.72" y="319.434111" transform="rotate(-0 90.72 319.434111)">t−59</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2"/>
+     <g id="text_2">
+      <text style="font-size: 9.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #69778c" x="248.875932" y="319.434111" transform="rotate(-0 248.875932 319.434111)">t−44</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3"/>
+     <g id="text_3">
+      <text style="font-size: 9.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #69778c" x="407.031864" y="319.434111" transform="rotate(-0 407.031864 319.434111)">t−29</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4"/>
+     <g id="text_4">
+      <text style="font-size: 9.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #69778c" x="565.187797" y="319.434111" transform="rotate(-0 565.187797 319.434111)">t−14</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5"/>
+     <g id="text_5">
+      <text style="font-size: 9.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #69778c" x="712.8" y="319.434111" transform="rotate(-0 712.8 319.434111)">t</text>
+     </g>
+    </g>
+    <g id="text_6">
+     <text style="font-size: 9.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #69778c" x="401.76" y="335.815645" transform="rotate(-0 401.76 335.815645)">窗口相对采样步</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_6">
+      <path d="M 90.72 277.895172
+L 712.8 277.895172
+" clip-path="url(#pcb46140cd4)" style="fill: none; stroke: #e1e7ef; stroke-width: 0.75; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_7"/>
+     <g id="text_7">
+      <text style="font-size: 9.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #69778c" x="85.72" y="281.752228" transform="rotate(-0 85.72 281.752228)">-2</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_8">
+      <path d="M 90.72 245.867586
+L 712.8 245.867586
+" clip-path="url(#pcb46140cd4)" style="fill: none; stroke: #e1e7ef; stroke-width: 0.75; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_9"/>
+     <g id="text_8">
+      <text style="font-size: 9.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #69778c" x="85.72" y="249.724642" transform="rotate(-0 85.72 249.724642)">-1</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_10">
+      <path d="M 90.72 213.84
+L 712.8 213.84
+" clip-path="url(#pcb46140cd4)" style="fill: none; stroke: #e1e7ef; stroke-width: 0.75; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_11"/>
+     <g id="text_9">
+      <text style="font-size: 9.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #69778c" x="85.72" y="217.697056" transform="rotate(-0 85.72 217.697056)">0</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_12">
+      <path d="M 90.72 181.812414
+L 712.8 181.812414
+" clip-path="url(#pcb46140cd4)" style="fill: none; stroke: #e1e7ef; stroke-width: 0.75; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_13"/>
+     <g id="text_10">
+      <text style="font-size: 9.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #69778c" x="85.72" y="185.669469" transform="rotate(-0 85.72 185.669469)">1</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_14">
+      <path d="M 90.72 149.784828
+L 712.8 149.784828
+" clip-path="url(#pcb46140cd4)" style="fill: none; stroke: #e1e7ef; stroke-width: 0.75; stroke-linecap: square"/>
+     </g>
+     <g id="line2d_15"/>
+     <g id="text_11">
+      <text style="font-size: 9.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #69778c" x="85.72" y="153.641883" transform="rotate(-0 85.72 153.641883)">2</text>
+     </g>
+    </g>
+    <g id="text_12">
+     <text style="font-size: 9.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #69778c" x="67.631436" y="213.84" transform="rotate(-90 67.631436 213.84)">窗口内 Z 分数</text>
+    </g>
+   </g>
+   <g id="line2d_16">
+    <path d="M 90.72 260.994443
+L 101.263729 272.219646
+L 111.807458 271.86426
+L 122.351186 260.712616
+L 132.894915 238.923023
+L 143.438644 222.046993
+L 153.982373 211.221018
+L 164.526102 208.712968
+L 175.069831 212.421534
+L 185.613559 219.992208
+L 196.157288 224.777623
+L 206.701017 218.709684
+L 217.244746 206.004357
+L 227.788475 191.05619
+L 238.332203 183.055805
+L 248.875932 176.280538
+L 259.419661 171.635117
+L 269.96339 168.073265
+L 280.507119 174.887634
+L 291.050847 188.553776
+L 301.594576 199.257226
+L 312.138305 197.943401
+L 322.682034 184.382684
+L 333.225763 169.404622
+L 343.769492 160.257973
+L 354.31322 163.978767
+L 364.856949 173.019137
+L 375.400678 179.030197
+L 385.944407 174.899564
+L 396.488136 168.529094
+L 407.031864 168.817722
+L 417.575593 180.548953
+L 428.119322 196.633542
+L 438.663051 215.115599
+L 449.20678 228.516071
+L 459.750508 238.131229
+L 470.294237 234.837416
+L 480.837966 227.933227
+L 491.381695 219.446843
+L 501.925424 223.819606
+L 512.469153 239.720993
+L 523.012881 264.216319
+L 533.55661 280.811739
+L 544.100339 281.685081
+L 554.644068 266.359874
+L 565.187797 246.70984
+L 575.731525 230.209338
+L 586.275254 221.950279
+L 596.818983 215.737046
+L 607.362712 210.506727
+L 617.906441 204.761252
+L 628.450169 200.49993
+L 638.993898 198.893192
+L 649.537627 200.078637
+L 660.081356 206.298561
+L 670.625085 214.722268
+L 681.168814 225.92448
+L 691.712542 237.429301
+L 702.256271 246.460159
+L 712.8 250.779411
+" clip-path="url(#pcb46140cd4)" style="fill: none; stroke: #3478b8; stroke-width: 1.9; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_17">
+    <path d="M 90.72 214.847491
+L 101.263729 216.971338
+L 111.807458 217.53945
+L 122.351186 213.560114
+L 132.894915 211.45803
+L 143.438644 214.794983
+L 153.982373 225.945278
+L 164.526102 236.116829
+L 175.069831 234.037667
+L 185.613559 218.388263
+L 196.157288 194.087395
+L 206.701017 175.162208
+L 217.244746 169.631305
+L 227.788475 181.137905
+L 238.332203 202.25609
+L 248.875932 215.787171
+L 259.419661 220.053103
+L 269.96339 220.517221
+L 280.507119 233.577756
+L 291.050847 250.233152
+L 301.594576 261.843527
+L 312.138305 262.090743
+L 322.682034 258.516803
+L 333.225763 254.059595
+L 343.769492 248.601458
+L 354.31322 242.835066
+L 364.856949 243.823192
+L 375.400678 250.8418
+L 385.944407 263.199361
+L 396.488136 268.879345
+L 407.031864 267.958579
+L 417.575593 257.344987
+L 428.119322 245.333049
+L 438.663051 223.846694
+L 449.20678 195.930392
+L 459.750508 160.966203
+L 470.294237 138.505208
+L 480.837966 133.648123
+L 491.381695 146.329601
+L 501.925424 168.303813
+L 512.469153 186.855489
+L 523.012881 204.306618
+L 533.55661 212.48435
+L 544.100339 222.826572
+L 554.644068 230.477909
+L 565.187797 236.46709
+L 575.731525 230.279504
+L 586.275254 214.643229
+L 596.818983 199.452097
+L 607.362712 190.138572
+L 617.906441 183.560513
+L 628.450169 179.783877
+L 638.993898 179.565791
+L 649.537627 186.091917
+L 660.081356 190.742069
+L 670.625085 197.020463
+L 681.168814 202.030087
+L 691.712542 207.896522
+L 702.256271 208.873162
+L 712.8 207.943883
+" clip-path="url(#pcb46140cd4)" style="fill: none; stroke: #d65f5f; stroke-width: 1.9; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_18">
+    <path d="M 90.72 224.31443
+L 101.263729 231.084763
+L 111.807458 234.577457
+L 122.351186 233.658359
+L 132.894915 228.858648
+L 143.438644 231.530219
+L 153.982373 236.335424
+L 164.526102 239.244953
+L 175.069831 233.743602
+L 185.613559 226.84483
+L 196.157288 222.62831
+L 206.701017 221.425318
+L 217.244746 221.582112
+L 227.788475 220.531263
+L 238.332203 217.085957
+L 248.875932 212.792199
+L 259.419661 212.245801
+L 269.96339 221.127384
+L 280.507119 233.381052
+L 291.050847 245.478457
+L 301.594576 250.253048
+L 312.138305 253.365019
+L 322.682034 256.144825
+L 333.225763 260.604469
+L 343.769492 264.065521
+L 354.31322 265.010824
+L 364.856949 263.151714
+L 375.400678 260.047245
+L 385.944407 255.029615
+L 396.488136 250.987806
+L 407.031864 246.388416
+L 417.575593 239.419141
+L 428.119322 226.687357
+L 438.663051 208.926125
+L 449.20678 189.211564
+L 459.750508 171.583067
+L 470.294237 156.731205
+L 480.837966 147.697706
+L 491.381695 143.311006
+L 501.925424 146.246863
+L 512.469153 154.160036
+L 523.012881 167.106241
+L 533.55661 175.87054
+L 544.100339 179.011705
+L 554.644068 175.646503
+L 565.187797 175.955092
+L 575.731525 181.920986
+L 586.275254 189.727375
+L 596.818983 195.437483
+L 607.362712 196.07853
+L 617.906441 196.171531
+L 628.450169 195.269983
+L 638.993898 195.172751
+L 649.537627 196.512313
+L 660.081356 198.285338
+L 670.625085 203.163509
+L 681.168814 207.980227
+L 691.712542 213.815182
+L 702.256271 215.440525
+L 712.8 214.341075
+" clip-path="url(#pcb46140cd4)" style="fill: none; stroke: #2a9d8f; stroke-width: 1.9; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_19">
+    <path d="M 90.72 214.605982
+L 101.263729 215.406107
+L 111.807458 210.253278
+L 122.351186 198.939095
+L 132.894915 189.613724
+L 143.438644 186.737974
+L 153.982373 192.317254
+L 164.526102 198.912816
+L 175.069831 211.05042
+L 185.613559 221.799811
+L 196.157288 233.936966
+L 206.701017 239.407669
+L 217.244746 246.187643
+L 227.788475 250.72933
+L 238.332203 254.728204
+L 248.875932 255.765197
+L 259.419661 256.72419
+L 269.96339 255.371394
+L 280.507119 249.935643
+L 291.050847 238.336815
+L 301.594576 224.913804
+L 312.138305 213.945631
+L 322.682034 209.499811
+L 333.225763 213.348421
+L 343.769492 221.376759
+L 354.31322 229.236697
+L 364.856949 230.998644
+L 375.400678 228.818974
+L 385.944407 227.02399
+L 396.488136 229.814621
+L 407.031864 232.467547
+L 417.575593 225.942375
+L 428.119322 210.763566
+L 438.663051 193.364574
+L 449.20678 186.913344
+L 459.750508 185.978799
+L 470.294237 182.698306
+L 480.837966 168.139373
+L 491.381695 147.239791
+L 501.925424 130.662204
+L 512.469153 124.162759
+L 523.012881 131.120845
+L 533.55661 147.995625
+L 544.100339 170.007047
+L 554.644068 188.659586
+L 565.187797 202.984589
+L 575.731525 215.652486
+L 586.275254 225.617184
+L 596.818983 231.29283
+L 607.362712 230.890116
+L 617.906441 230.963836
+L 628.450169 235.87581
+L 638.993898 242.605059
+L 649.537627 248.769936
+L 660.081356 248.737726
+L 670.625085 246.446417
+L 681.168814 238.802703
+L 691.712542 228.85931
+L 702.256271 217.050955
+L 712.8 210.214812
+" clip-path="url(#pcb46140cd4)" style="fill: none; stroke: #4b9667; stroke-width: 1.9; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_20">
+    <path d="M 90.72 246.305262
+L 101.263729 248.776654
+L 111.807458 252.136094
+L 122.351186 253.397152
+L 132.894915 251.565707
+L 143.438644 248.980956
+L 153.982373 248.344414
+L 164.526102 249.62762
+L 175.069831 251.210792
+L 185.613559 251.460352
+L 196.157288 250.522193
+L 206.701017 248.097003
+L 217.244746 245.08473
+L 227.788475 242.957098
+L 238.332203 242.46082
+L 248.875932 244.135339
+L 259.419661 246.081861
+L 269.96339 247.398524
+L 280.507119 246.919136
+L 291.050847 246.07143
+L 301.594576 245.500927
+L 312.138305 245.803916
+L 322.682034 245.219357
+L 333.225763 243.911571
+L 343.769492 241.327497
+L 354.31322 238.820601
+L 364.856949 235.510164
+L 375.400678 231.286836
+L 385.944407 226.604089
+L 396.488136 222.800352
+L 407.031864 220.88149
+L 417.575593 213.572797
+L 428.119322 201.571808
+L 438.663051 184.926436
+L 449.20678 176.87265
+L 459.750508 174.639089
+L 470.294237 177.519363
+L 480.837966 177.716607
+L 491.381695 177.175848
+L 501.925424 176.36276
+L 512.469153 177.373309
+L 523.012881 179.122484
+L 533.55661 182.095379
+L 544.100339 184.330353
+L 554.644068 185.8752
+L 565.187797 184.430103
+L 575.731525 181.360437
+L 586.275254 177.693507
+L 596.818983 176.459644
+L 607.362712 177.493654
+L 617.906441 179.910459
+L 628.450169 180.509854
+L 638.993898 179.698667
+L 649.537627 178.57982
+L 660.081356 179.088286
+L 670.625085 180.079827
+L 681.168814 180.644734
+L 691.712542 181.13175
+L 702.256271 182.051419
+L 712.8 182.913821
+" clip-path="url(#pcb46140cd4)" style="fill: none; stroke: #e58a35; stroke-width: 1.9; stroke-linecap: square"/>
+   </g>
+   <g id="line2d_21">
+    <path d="M 480.837966 306.72
+L 480.837966 120.96
+" clip-path="url(#pcb46140cd4)" style="fill: none; stroke-dasharray: 4.8,3.6; stroke-dashoffset: 0; stroke: #d65f5f; stroke-opacity: 0.8; stroke-width: 1.2"/>
+   </g>
+   <g id="line2d_22">
+    <path d="M 90.72 213.84
+L 712.8 213.84
+" clip-path="url(#pcb46140cd4)" style="fill: none; stroke-dasharray: 2.96,1.28; stroke-dashoffset: 0; stroke: #aeb9c7; stroke-width: 0.8"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 90.72 306.72
+L 90.72 120.96
+" style="fill: none; stroke: #aeb9c7; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 90.72 306.72
+L 712.8 306.72
+" style="fill: none; stroke: #aeb9c7; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_13">
+    <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #d65f5f" x="491.381695" y="139.287077" transform="rotate(-0 491.381695 139.287077)">变化点</text>
+   </g>
+   <g id="legend_1">
+    <g id="line2d_23">
+     <path d="M 297.36 108.966731
+L 304.755 108.966731
+L 312.15 108.966731
+" style="fill: none; stroke: #3478b8; stroke-width: 1.9; stroke-linecap: square"/>
+    </g>
+    <g id="text_14">
+     <text style="font-size: 8.7px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start" x="319.11" y="112.011731" transform="rotate(-0 319.11 112.011731)">槽电流</text>
+    </g>
+    <g id="line2d_24">
+     <path d="M 297.36 122.790046
+L 304.755 122.790046
+L 312.15 122.790046
+" style="fill: none; stroke: #d65f5f; stroke-width: 1.9; stroke-linecap: square"/>
+    </g>
+    <g id="text_15">
+     <text style="font-size: 8.7px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start" x="319.11" y="125.835046" transform="rotate(-0 319.11 125.835046)">设定电压</text>
+    </g>
+    <g id="line2d_25">
+     <path d="M 364.785 108.966731
+L 372.18 108.966731
+L 379.575 108.966731
+" style="fill: none; stroke: #2a9d8f; stroke-width: 1.9; stroke-linecap: square"/>
+    </g>
+    <g id="text_16">
+     <text style="font-size: 8.7px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start" x="386.535" y="112.011731" transform="rotate(-0 386.535 112.011731)">波动量</text>
+    </g>
+    <g id="line2d_26">
+     <path d="M 364.785 122.82403
+L 372.18 122.82403
+L 379.575 122.82403
+" style="fill: none; stroke: #4b9667; stroke-width: 1.9; stroke-linecap: square"/>
+    </g>
+    <g id="text_17">
+     <text style="font-size: 8.7px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start" x="386.535" y="125.86903" transform="rotate(-0 386.535 125.86903)">电压斜率</text>
+    </g>
+    <g id="line2d_27">
+     <path d="M 432.21 108.966731
+L 439.605 108.966731
+L 447 108.966731
+" style="fill: none; stroke: #e58a35; stroke-width: 1.9; stroke-linecap: square"/>
+    </g>
+    <g id="text_18">
+     <text style="font-size: 8.7px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start" x="453.96" y="112.011731" transform="rotate(-0 453.96 112.011731)">实际加料间隔</text>
+    </g>
+   </g>
+  </g>
+  <g id="axes_2">
+   <g id="patch_5">
+    <path d="M 829.44 324
+L 1116.7956 324
+L 1116.7956 108
+L 829.44 108
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g clip-path="url(#pe9ce1e6dd1)">
+    <image xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAY8AAAEsCAYAAAA7Ej+nAAARlElEQVR4nO3dy48l51kH4Kpz7XtPz6Vnxvbc7MQ4g3JBGAFKEFJ2IMQKITb8BfwfsGTFngUbJDaIkEgoIEgQwpCLHRGP43E84/FlLj0zPdPXc7rPqULtbL+3orflRAg9z/J99db5quqr+p2zOvX9/UdtFajrpljv1cfRSNWvZ2GvrsrHO61+sI5e1xqCczrRtINifR7UTxw3i8V62/ar06jrebC2YTgza8bpc+q6DoN6GvZG/f3PdE+0bS+9vtOc76wdn2pfDnrlazHsHVanEe2XqH5is32jPPPXfxPO/N2fvVX9svzRX325WB/+6R+HM9uj19N74rPWtce6RPuvrU637uh563qPRbrW0LXPT/Mu/eXcJQD+XxEeAKQJDwDShAcAacIDgDThAUCa8AAgTXgAkCY8AEgTHgCkCQ8A0oQHAGnCA4A04QFAmvAAIE14AJAmPABIEx4ApAkPANKEBwBp9Yd7z9vsH9F3/cn6rPls86jfcbjoD927/rQ9+qP3ruPN22E4c5o/ve9aQ9P2g/rgM11D1zXqEl2jX6au8523o3K9Y9lNGz4C1bmF+8X6mZ3vhjPHf/uNsPfwm+8X68/u7YUzveB0+4M6nGmb+Jwis9npeueuLRfrF3//5XBm9Ce/F/b2z/5Wsf50eqP6vyDaf/PmdO+xXlW+uHXdpN8hXc9n13MTvXe6+OUBQJrwACBNeACQJjwASBMeAKQJDwDShAcAacIDgDThAUCa8AAgTXgAkCY8AEgTHgCkCQ8A0oQHAGnCA4A04QFAmvAAIE14ACA8APjF88sDgLT6Gz/daqPm0bwp1vcns/CAs2DmxGjYL9bHQf1Erw5b1XFTXvpsFq+hSy/4sMWO9S0Myvk76se53Kvjk4queVQ/EVyGTl3XtWt9pzneoBdfi1E/uOaD+JovddyPlVG5Pu7vhjPj/k7Y69flvb4yeBDOVFt3w1Z763/K9UdP4pngeauXhtWpRBtm3rGRgvv06TpGg3JjYSE+3qhj7aPgJs7i9051cBi22qh33PGeGMZ7to7W3uv4Lt50fFZ0Xl3Hi3qnmek8Xnzf/fIAIE14AJAmPABIEx4ApAkPANKEBwBpwgOANOEBQJrwACBNeACQJjwASBMeAKQJDwDShAcAacIDgDThAUCa8AAgTXgAkCY8AEgTHgCkDY7m8R+zP92dFutb2/GfzR9OO/6kPjAe9sPeYBDn26Bf7g1PMXNicVxeR6/jT+BHwfF6dTyz2LG+jYVBsb4wiK/ReBB/Vr8+KtbrKr7vvXoe9uKZ+L7PmnHYm7ejYn0yi8+p43ZUsyZqroYzR/PlsFfXTfqczpyZxAs8+3G5/vhpODJ/XH7e2uO9+HPmbb7X77jmq6O4tz7OfzNt4v1XzYK91HScUy/+tHo0LDcGHWsYlJ/DT60E+yWqn1iI90uo63yPjnLX7ucd7xT88gAgTXgAkCY8AEgTHgCkCQ8A0oQHAGnCA4A04QFAmvAAIE14AJAmPABIEx4ApAkPANKEBwBpwgOANOEBQJrwAEB4APCL55cHAGnCA4A04QFA2uB3rx6EzXk7KNbHvTacWRw8jz/s+Gm5MTuOVzhaDFt71dVi/f7+9XDm9tP9sLe1MynWn+9N4/WtlMsbC+Vrd+LMwjDsLQ/LnzXqPwtn1oefhL1hG9yP/iicOZyvh71ZU74fvXoWr6F3GPZ6dfne11UTzjRtfP2OmuVifdbG5zvsle/7iaX5vXJj64Nwpr11K+xN//1Osf7g3z4MZ96/VV7fs/hRq9ZW496VK3WxfvErm+HM4mtnw97glQvlxquvhDP1lZthb7++mt6X/Y79N+7vFuuLHc9UfbwX9qo22JvDhXBkd/ZS2Ht0WD7f20/jd/NHwXts+yB+Vx0dz6useRO/6/3yACBNeACQJjwASBMeAKQJDwDShAcAacIDgDThAUCa8AAgTXgAkCY8AEgTHgCkCQ8A0oQHAGnCA4A04QFAmvAAIE14AJAmPABIEx4ApNXz5jvhP5w3bTlb+sfxH8dXjz8MW+2jB+XGJP7T9urMWtiq1zbKjc0b4cxuez3sPTgo/xH9s8lxOLN1cFT+nOksXkMwc6JpyvXZLGhUVTUYxN8BNtbGxfrnNpbCmWtr22Hv7PhOuTHdDWeq8XLY2ptdKtZ3ji6HM/N2FPb6dfnaDnrxHjtuFsPe0bz8WSvD+Bpd6L8Z9to7Pyo3nnY8U9GmODgIR45+GD+H979ZvofvvDUJZ7Y7lrdxply/+Xq8xy79wSthb/i1m8V6ff3z4cx84+Wwt310rVg/nJ2tPks70zb9nvh575fIqF9+5i8ul5/3E5dX5mHvwsK7xfpwthXO+OUBQJrwACBNeACQJjwASBMeAKQJDwDShAcAacIDgDThAUCa8AAgTXgAkCY8AEgTHgCkCQ8A0oQHAMIDgF88vzwASBMeAKQJDwDShAcAacIDgLS6OfyHNmoeDl4q1h9PXg0P+OOtw7B399Fe+XOms3BmfWUU9i6dWSzWZ014StXh8Tzsbe9Mi/XBoK6yNtfLazsx6seZHa39+cFRfLxRP+xdD9ZxeSVew6i/H/aO5svFelMNwpnF/nbYO7/wXrFe7z2sTmXlQrG8N9sMR/aPz4e9g9lqsT6ZNeHM8ii+tmfHd4r1leb9cKba+qBYbm/fDkem//Ju2Lv3rfJn3fsgPqelpXh5V14r74kLX30xnBn/etyrXn2lWK5H8bugnUzi403Kz3V9Lr7v1fmrYWs2OldeQxs/h8Ne/ExVh7vl+s6jcKR9Ejwfjx7Hn7OzGx/vqPwObjvel355AJAmPABIEx4ApAkPANKEBwBpwgOANOEBQJrwACBNeACQJjwASBMeAKQJDwDShAcAacIDgDThAUCa8AAgTXgAkCY8AEgTHgCkCQ8A0uonkztt1Nw73izWD47jA/bqOuwtD8t/RD9rF8KZ55PyH7OfmMyaYv3MwjCcWR/vhL1xv9zr1/Ea2racv72OmVFvP+wN6+BP6pvyuZ7Ya18Kew8Prhfrt58ehDO7R/HaDw7LN/9wOo+Pd3AU9vaD483m8fmOhv2wtxzc+/XVUXrm07nFcu/CUny8a+uHYW+zfaNYb299L5yZvfFOsb7/vQfhzPO78T6f7pSfw+FSfB1WXlgJe2tfvlCsD66thTO95XHYa/bL6+vSO7ceNzfPl+tn4pm6l/9e3XY8o13qfrCfe4N4aHG1XF8I6ieW4vOdt6P0u88vDwDShAcAacIDgDThAUCa8AAgTXgAkCY8AEgTHgCkCQ8A0oQHAGnCA4A04QFAmvAAIE14AJAmPABIEx4ApAkPANKEBwBpwgOANOEBQFr9k+2DNmrOmrAVGvTqdK9p4885mse92Sn+cL5Xx+uLdK0vukRd167rGkWthUG/Oo1oHZPZPJw5nDXp43Vdo65rMQk+67BjfZPpLH1/R6P4+i0P41503bvuYZdobLHj/l5eKV+LF0ZvhDPtm98Ne82P7xTr8+1JONNbGoa9erXcq3vxd9O269mNnvmOd0HVr9O9uuO+16NBfLzovJr4nNrD47DX7B6V6wfxTPji6dqXHc9hu3+cXoNfHgCkCQ8A0oQHAGnCA4A04QFAmvAAIE14AJAmPABIEx4ApAkPANKEBwBpwgOANOEBQJrwACBNeACQJjwASBMeAKQJDwDShAcAacIDgDThAUBa3Rz/Uxs1Z72VYv2oKdc/7c2Xw96gNy3WF/tPw5n+wcOwVzWzcn3lXDhy0GzGh2sHxfq4txvODHv7xfp0vh7O7M7iNTyfltc+mTXhTFdvOo97kXE//k6xudwv1s8vvBvOLM4+ij9sZ6tcn5av64l2clhl1Svx/agufT5s3dv/7WL9jY+fhzPv3XsW9qbH82J9dWkUzrxwofxMXVxdCGcuLsfHWxqW72HThq+CatbEvV5dF+vLw/LzfmJxEF+jXn1crE/na+ln92e98vku9HfCmVE/3n8r7d1y4+FP4zX81/fD3u633i/Wb//rg3Dmo0+qtEsX497aarne6/h54ZcHAGnCA4A04QFAmvAAIE14AJAmPABIEx4ApAkPANKEBwBpwgOANOEBQJrwACBNeACQJjwASBMeAKQJDwDShAcAacIDgDThAUCa8AAgrZ6//efhP9vXy8vlxtpmeMD95S+Gvbe2XirW377/PJxZXhiGva9e2yjWrw6+Hc5Uj8p/Nv+pNrgUg3E8M1oMjtV0fE5H7+gw9zknxsF9OrFyrlyfH+XXcGL/Wbne68czw4WOXnBte4N4ptfxnadf3i+H9cVw5On05bD3/fvTYv32R/GefefdrbB3uH9crO/vlj/nxHBUvraLy6Nw5txmvCcuni/3Lp1bCmdunF8JezfP7xXr56s3w5lq627YaneCa/v4aTgz/+n9sLf/Hx8X68/ej+/hcCnefxtfKD9Tgxvr4Uz/bPz81uvBvXrhUjxz+Uq5cbb8jj1xVJfflyfatvxM1XX8rvLLA4A04QFAmvAAIE14AJAmPABIEx4ApAkPANKEBwBpwgOANOEBQJrwACBNeACQJjwASBMeAKQJDwDShAcAacIDgDThAUCa8AAgTXgAkCY8AEir58132qg5a8bFetuROaPebvxps6Py8QZL4cjjyefC3qODtfIa+vH6rq7cCnujO/9crDf/+VY4M398WKwPX7sYztSv/2Z8vHPl85025XM90bbx+X6y/3Kx/ubDnXDmvXvPqqzlxWHYW1mKe2dXy3vszEI804Q7tqq29qfF+k8+2A5nnj2fhL1ery7Wr7+4Hs68+kJ8r37jcvn52Hjw9+HMwV9+o1h/55v3wpmdjsfw2ufL1/zFP4yfteFXfyXs1a99qdxY3wxnns+uhr3do8vF+nZ8m6qNhbj34vIPi/X6QfwuaB89iA/4+Em5flB+F/xcZzfK9bXVcKReD/bYYrwvq6WOXh28Q9omHPHLA4A04QFAmvAAIE14AJAmPABIEx4ApAkPANKEBwBpwgOANOEBQJrwACBNeACQJjwASBMeAKQJDwDShAcAacIDgDThAUCa8AAgTXgAkFb/xbd/0kbNux88Kw/16vCAN66dCXtfv3mpWH9145NwZrW+G/aq42m5PloMRw6q8hpOTGblP4hfHjwOZ8YH7xXr7QfvhjPVo62w1W6Vr/n86WE40+wdhb3B5ZVivffa9XCmfulq2Kvms2K5vX07HDl+817Ym915Xl7DyjCcGd6I91h/c7lYb3Ym4cz84UHYC9fwhc2wV3/xZthrr/xasf7wMJ65vzcq1peG/XBmfRzvl7VR+XmbzlfDmfe2z4a9f/zBR8X6j34QP9dtE752qi98ufyMfu2Ll8OZL20uhL310cfF+lLHc92f7YS96qC8Z6vJXvq5+dmHDcr15XiftysXi/XHk8+FM5/sxff3493y87E7jdftlwcAacIDgDThAUCa8AAgTXgAkCY8AEgTHgCkCQ8A0oQHAGnCA4A04QFAmvAAIE14AJAmPABIEx4ApAkPANKEBwBpwgOANOEBQJrwACBNeACQVm9P322j5kJvt1gf97bzn1RV1VG7Xqw/OnwtnHlyGB9vMpsX6+eXRuHMxngr7K0MHxXr/XoazvSrSbnx5KNwpv3Bf4e9ybdvF+vbt56EM9Odo3h9436xvnJpOZxZ2FgIe/XKsFzvx99DBjfW4/X9ypXy8V69Gc7sn3k97L39pHy8tz5+Fs4cHM7C3vS4vMe2tuONuftsEu+/c4vF+te/8mI48/ql8trPtG+HM1XThK3ZwoVi/en05XDm+XQt7PXqcn15eBDOXFh4J+z1H/64WG/fuRXOtA+fVln1avlefOr6lXju+q8W6w/q3wlnPtwpPzcntifHxfqgFz9Tq6Pyc702HoQzS/ESqmeT8n75eDd+9/nlAUCa8AAgTXgAkCY8AEgTHgCkCQ8A0oQHAGnCA4A04QFAmvAAIE14AJAmPABIEx4ApAkPANKEBwBpwgOANOEBQJrwACBNeACQJjwAqLL+FzbtQEQwut//AAAAAElFTkSuQmCC" id="imagebb89a5d39c" transform="scale(1 -1) translate(0 -216)" x="829.44" y="-108" width="287.28" height="216"/>
+   </g>
+   <g id="matplotlib.axis_3">
+    <g id="xtick_6">
+     <g id="line2d_28"/>
+     <g id="text_19">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: middle" x="831.83463" y="334.9021" transform="rotate(-0 831.83463 334.9021)">0</text>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_29"/>
+     <g id="text_20">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: middle" x="903.67353" y="334.9021" transform="rotate(-0 903.67353 334.9021)">15</text>
+     </g>
+    </g>
+    <g id="xtick_8">
+     <g id="line2d_30"/>
+     <g id="text_21">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: middle" x="975.51243" y="334.9021" transform="rotate(-0 975.51243 334.9021)">30</text>
+     </g>
+    </g>
+    <g id="xtick_9">
+     <g id="line2d_31"/>
+     <g id="text_22">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: middle" x="1047.35133" y="334.9021" transform="rotate(-0 1047.35133 334.9021)">45</text>
+     </g>
+    </g>
+    <g id="xtick_10">
+     <g id="line2d_32"/>
+     <g id="text_23">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: middle" x="1114.40097" y="334.9021" transform="rotate(-0 1114.40097 334.9021)">59</text>
+     </g>
+    </g>
+    <g id="text_24">
+     <text style="font-size: 9px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #69778c" x="973.1178" y="349.548652" transform="rotate(-0 973.1178 349.548652)">时间步</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_4">
+    <g id="ytick_6">
+     <g id="line2d_33"/>
+     <g id="text_25">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #3478b8" x="825.44" y="119.231825" transform="rotate(-0 825.44 119.231825)">槽电压</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_34"/>
+     <g id="text_26">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #3478b8" x="825.44" y="134.743404" transform="rotate(-0 825.44 134.743404)">槽电流</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_35"/>
+     <g id="text_27">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #3478b8" x="825.44" y="150.122171" transform="rotate(-0 825.44 150.122171)">设定电压</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_36"/>
+     <g id="text_28">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #3478b8" x="825.44" y="165.517539" transform="rotate(-0 825.44 165.517539)">电压上限</text>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_37"/>
+     <g id="text_29">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #3478b8" x="825.44" y="180.94611" transform="rotate(-0 825.44 180.94611)">电压下限</text>
+     </g>
+    </g>
+    <g id="ytick_11">
+     <g id="line2d_38"/>
+     <g id="text_30">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #7856a6" x="825.44" y="196.428471" transform="rotate(-0 825.44 196.428471)">效应等待</text>
+     </g>
+    </g>
+    <g id="ytick_12">
+     <g id="line2d_39"/>
+     <g id="text_31">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #2a9d8f" x="825.44" y="211.815871" transform="rotate(-0 825.44 211.815871)">波动量</text>
+     </g>
+    </g>
+    <g id="ytick_13">
+     <g id="line2d_40"/>
+     <g id="text_32">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #2a9d8f" x="825.44" y="227.302215" transform="rotate(-0 825.44 227.302215)">波动差</text>
+     </g>
+    </g>
+    <g id="ytick_14">
+     <g id="line2d_41"/>
+     <g id="text_33">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #2a9d8f" x="825.44" y="242.710201" transform="rotate(-0 825.44 242.710201)">电压斜率</text>
+     </g>
+    </g>
+    <g id="ytick_15">
+     <g id="line2d_42"/>
+     <g id="text_34">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #2a9d8f" x="825.44" y="258.138772" transform="rotate(-0 825.44 258.138772)">累计斜率</text>
+     </g>
+    </g>
+    <g id="ytick_16">
+     <g id="line2d_43"/>
+     <g id="text_35">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #e58a35" x="825.44" y="273.567344" transform="rotate(-0 825.44 273.567344)">基准加料间隔</text>
+     </g>
+    </g>
+    <g id="ytick_17">
+     <g id="line2d_44"/>
+     <g id="text_36">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #e58a35" x="825.44" y="288.970681" transform="rotate(-0 825.44 288.970681)">实际加料间隔</text>
+     </g>
+    </g>
+    <g id="ytick_18">
+     <g id="line2d_45"/>
+     <g id="text_37">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #e58a35" x="825.44" y="304.395268" transform="rotate(-0 825.44 304.395268)">加料状态</text>
+     </g>
+    </g>
+    <g id="ytick_19">
+     <g id="line2d_46"/>
+     <g id="text_38">
+      <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: end; fill: #7856a6" x="825.44" y="319.840441" transform="rotate(-0 825.44 319.840441)">阳极移动状态</text>
+     </g>
+    </g>
+   </g>
+  </g>
+  <g id="axes_3">
+   <g id="patch_6">
+    <path d="M 1127.9088 324
+L 1138.7088 324
+L 1138.7088 108
+L 1127.9088 108
+z
+" style="fill: #ffffff"/>
+   </g>
+   <image xlink:href="data:image/png;base64,
+iVBORw0KGgoAAAANSUhEUgAAAA8AAAEsCAYAAAAcmelmAAABuUlEQVR4nO2ZQY4EMQwCCe0P7WV/us9te6V5gjkglJl7iQSwO9Kcn9+/wfJXh2fLos6zh7kmARRIz7HLZljZ7sw1CathR1HGo7jNyKk6od1mYsO4JhFbz3Iq0xQVlTvTZhiZCHNN4qMsTBVtbp9Ut48AP7568r6onsRlUOJUUVB+MqeKNvi4lJ/QBXgyc+aaRT3nwqk6iTlzTUIcyco0rGwl4ZqEc/WWM2dERnUk+NhgeL4YpShzjyLWbUYqc6+L1DuXT/n5TlVIztyjEI990AJ8BJh4TcpHuDPXJO40rETl1zZVfZthJdazXVOFSLcZ2TCuSVjreUaA4YK5JvFRHtedO9HtMkbVHZnzCPC4GsY1Cd2wsSl34DwzNapO3GFlnKq21bNtOfc3qgui4pqE8ytZF04V1yRil0Fl5sw1Cath80qGjQC/AjyCMtck1GPjVaJql9tQlEdQpnGqXlM9S2zYuF4G/R2MmMGY63bYZO6wUY7dPsPa9SYZ28tgbG63q9sllmQyo2qb8gSWhGsSzr1dtm6Xz+3WGoZIeEzK3KPIdbsTYe5RiMce5Y+fjnS7QqPq+3ZYXRjVP0EqRS/K740OAAAAAElFTkSuQmCC" id="image9c73dceb2d" transform="scale(1 -1) translate(0 -216)" x="1128.24" y="-108" width="10.8" height="216"/>
+   <g id="matplotlib.axis_5"/>
+   <g id="matplotlib.axis_6">
+    <g id="ytick_20">
+     <g id="line2d_47"/>
+     <g id="text_39">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #69778c" x="1142.2088" y="296.390904" transform="rotate(-0 1142.2088 296.390904)">-2</text>
+     </g>
+    </g>
+    <g id="ytick_21">
+     <g id="line2d_48"/>
+     <g id="text_40">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #69778c" x="1142.2088" y="257.819475" transform="rotate(-0 1142.2088 257.819475)">-1</text>
+     </g>
+    </g>
+    <g id="ytick_22">
+     <g id="line2d_49"/>
+     <g id="text_41">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #69778c" x="1142.2088" y="219.248047" transform="rotate(-0 1142.2088 219.248047)">0</text>
+     </g>
+    </g>
+    <g id="ytick_23">
+     <g id="line2d_50"/>
+     <g id="text_42">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #69778c" x="1142.2088" y="180.676618" transform="rotate(-0 1142.2088 180.676618)">1</text>
+     </g>
+    </g>
+    <g id="ytick_24">
+     <g id="line2d_51"/>
+     <g id="text_43">
+      <text style="font-size: 8px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #69778c" x="1142.2088" y="142.10519" transform="rotate(-0 1142.2088 142.10519)">2</text>
+     </g>
+    </g>
+    <g id="text_44">
+     <text style="font-size: 8.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #69778c" x="1161.2634" y="216" transform="rotate(-90 1161.2634 216)">Z</text>
+    </g>
+   </g>
+   <g id="LineCollection_1"/>
+   <g id="patch_7">
+    <path d="M 1127.9088 324
+L 1133.3088 324
+L 1138.7088 324
+L 1138.7088 108
+L 1133.3088 108
+L 1127.9088 108
+L 1127.9088 324
+z
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+  </g>
+  <g id="line2d_52">
+   <path d="M 1174.176 151.2
+L 1194.912 151.2
+" style="fill: none; stroke: #3478b8; stroke-width: 3.2; stroke-linecap: round"/>
+  </g>
+  <g id="line2d_53">
+   <path d="M 1174.176 174.96
+L 1194.912 174.96
+" style="fill: none; stroke: #2a9d8f; stroke-width: 3.2; stroke-linecap: round"/>
+  </g>
+  <g id="line2d_54">
+   <path d="M 1174.176 198.72
+L 1194.912 198.72
+" style="fill: none; stroke: #e58a35; stroke-width: 3.2; stroke-linecap: round"/>
+  </g>
+  <g id="line2d_55">
+   <path d="M 1174.176 222.48
+L 1194.912 222.48
+" style="fill: none; stroke: #7856a6; stroke-width: 3.2; stroke-linecap: round"/>
+  </g>
+  <g id="text_45">
+   <text style="font-weight: 700; font-size: 24px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #132b52" x="58.32" y="46.0425" transform="rotate(-0 58.32 46.0425)">Process State Agent｜多变量窗口与状态摘要</text>
+  </g>
+  <g id="text_46">
+   <text style="font-size: 11.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #69778c" x="60.912" y="68.017734" transform="rotate(-0 60.912 68.017734)">机制示意 · 14 变量 × 60 个采样步 · 合成时序 · 逐变量标准化</text>
+  </g>
+  <g id="text_47">
+   <text style="font-weight: 700; font-size: 13px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #132b52" x="829.44" y="92.88" transform="rotate(-0 829.44 92.88)">14变量状态矩阵</text>
+  </g>
+  <g id="text_48">
+   <text style="font-weight: 700; font-size: 10.5px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #132b52" x="1172.88" y="129.6" transform="rotate(-0 1172.88 129.6)">变量组</text>
+  </g>
+  <g id="text_49">
+   <text style="font-size: 8.8px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #273449" x="1205.28" y="153.765148" transform="rotate(-0 1205.28 153.765148)">电气状态 · 5</text>
+  </g>
+  <g id="text_50">
+   <text style="font-size: 8.8px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #273449" x="1205.28" y="177.507961" transform="rotate(-0 1205.28 177.507961)">波动动态 · 4</text>
+  </g>
+  <g id="text_51">
+   <text style="font-size: 8.8px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #273449" x="1205.28" y="201.263836" transform="rotate(-0 1205.28 201.263836)">加料操作 · 3</text>
+  </g>
+  <g id="text_52">
+   <text style="font-size: 8.8px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #273449" x="1205.28" y="225.079523" transform="rotate(-0 1205.28 225.079523)">设备状态 · 2</text>
+  </g>
+  <g id="text_53">
+   <text style="font-weight: 700; font-size: 11px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #132b52" x="90.72" y="358.56" transform="rotate(-0 90.72 358.56)">代表变量趋势</text>
+  </g>
+  <g id="text_54">
+   <text style="font-size: 9.3px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #69778c" x="90.72" y="386.64" transform="rotate(-0 90.72 386.64)">合成数据用于说明：多变量窗口 → 趋势/波动/变化点 → 工况状态摘要。</text>
+  </g>
+  <g id="text_55">
+   <text style="font-size: 9.3px; font-family: 'Microsoft YaHei', 'DejaVu Sans', sans-serif; text-anchor: start; fill: #69778c" x="829.44" y="386.64" transform="rotate(-0 829.44 386.64)">变量值为标准化模拟量；形状仅用于展示状态特征提取。</text>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pcb46140cd4">
+   <rect x="90.72" y="120.96" width="622.08" height="185.76"/>
+  </clipPath>
+  <clipPath id="pe9ce1e6dd1">
+   <rect x="829.44" y="108" width="287.3556" height="216"/>
+  </clipPath>
+ </defs>
+</svg>

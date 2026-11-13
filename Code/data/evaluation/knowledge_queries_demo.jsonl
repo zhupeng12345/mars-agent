@@ -1,0 +1,10 @@
+{"query_id":"kq-01","query":"过热度需要温度和初晶温度实测依据","expected_source_ids":["superheat-definition-v1"],"expected_behavior":"hit","applicability":["process","superheat"],"fixture_type":"demo_fixture"}
+{"query_id":"kq-02","query":"火眼亮度纹理火焰形态和跨帧关键帧","expected_source_ids":["fire-eye-visual-state-v1"],"expected_behavior":"hit","applicability":["visual","fire_eye"],"fixture_type":"demo_fixture"}
+{"query_id":"kq-03","query":"现场检查建议与生产控制动作人工授权","expected_source_ids":["evidence-boundary-v1"],"expected_behavior":"hit","applicability":["report","review"],"fixture_type":"demo_fixture"}
+{"query_id":"kq-04","query":"火眼视觉标签不能替代温度实测","expected_source_ids":["superheat-definition-v1","fire-eye-visual-state-v1"],"expected_behavior":"hit","applicability":["visual","fire_eye","superheat"],"fixture_type":"demo_fixture"}
+{"query_id":"kq-05","query":"火眼视觉状态亮度证据","expected_source_ids":["fire-eye-visual-state-v1"],"expected_behavior":"hit","applicability":["visual"],"fixture_type":"demo_fixture"}
+{"query_id":"kq-06","query":"证据引用现场复核控制授权","expected_source_ids":["evidence-boundary-v1"],"expected_behavior":"hit","applicability":["review"],"fixture_type":"demo_fixture"}
+{"query_id":"kq-07","query":"不存在的镁盐配方炉膛耐火砖 xyz","expected_source_ids":[],"expected_behavior":"empty","applicability":[],"fixture_type":"demo_fixture"}
+{"query_id":"kq-08","query":"过热度温度初晶温度规则","expected_source_ids":[],"expected_behavior":"empty","as_of":"2025-12-31","applicability":["process","superheat"],"fixture_type":"demo_fixture"}
+{"query_id":"kq-09","query":"火眼视觉状态和关键帧","expected_source_ids":["superheat-definition-v1"],"expected_behavior":"hit","applicability":["process"],"fixture_type":"demo_fixture"}
+{"query_id":"kq-10","query":"初晶温度实测和火眼状态证据","expected_source_ids":["superheat-definition-v1","fire-eye-visual-state-v1"],"expected_behavior":"hit","applicability":["visual","superheat"],"fixture_type":"demo_fixture"}

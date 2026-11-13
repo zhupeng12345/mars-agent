@@ -24,8 +24,9 @@ if __name__ == "__main__":
     # 获取当前脚本所在目录
     current_dir = os.path.dirname(os.path.abspath(__file__))
 
-    # 构建streamlit启动命令
+    # 通过当前 Python 解释器启动，确保网页与 LangGraph/视觉依赖使用同一环境。
     streamlit_app = os.path.join(current_dir, "streamlit_app.py")
-
-    # 启动streamlit
-    os.system(f'streamlit run "{streamlit_app}" --server.port 8501 --server.headless false')
+    os.execv(sys.executable, [
+        sys.executable, "-m", "streamlit", "run", streamlit_app,
+        "--server.port", "8501", "--server.headless", "false",
+    ])

@@ -1,0 +1,19 @@
+{
+  "asset_id": "asset-page-12",
+  "page": 12,
+  "title": "F-GMVAE-T",
+  "source_files": [
+    "agentic/models/fgmvae_temporal.py"
+  ],
+  "run_id": "ppt-demo-structure-001",
+  "model_profile": "presentation_structure_validation_v1",
+  "knowledge_version": "knowledge-pack-v1",
+  "generated_at": "2026-11-08T17:54:48.270665+00:00",
+  "width": 1600,
+  "height": 900,
+  "status": "flow_validation",
+  "script": "agentic.scripts.build_ppt_visual_assets",
+  "script_version": "ppt-assets-1",
+  "content_sha256": "da3ad1de551f241d",
+  "claim_policy": "structure validation only; no visual accuracy or production control claim"
+}

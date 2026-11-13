@@ -1,0 +1,19 @@
+{
+  "asset_id": "asset-page-14",
+  "page": 14,
+  "title": "JEV 路由",
+  "source_files": [
+    "agentic/platform/jev/router.py"
+  ],
+  "run_id": "ppt-demo-structure-001",
+  "model_profile": "presentation_structure_validation_v1",
+  "knowledge_version": "knowledge-pack-v1",
+  "generated_at": "2026-11-08T17:54:48.419497+00:00",
+  "width": 1600,
+  "height": 900,
+  "status": "flow_validation",
+  "script": "agentic.scripts.build_ppt_visual_assets",
+  "script_version": "ppt-assets-1",
+  "content_sha256": "60b21fac9b4a5a2e",
+  "claim_policy": "structure validation only; no visual accuracy or production control claim"
+}

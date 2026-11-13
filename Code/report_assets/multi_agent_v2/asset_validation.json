@@ -1,0 +1,160 @@
+{
+  "schema_version": "asset-validation-1",
+  "directory": "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2",
+  "status": "pass",
+  "image_count": 7,
+  "valid_count": 7,
+  "rows": [
+    {
+      "path": "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-7da86fdaa68a-contact-sheet.jpg",
+      "sidecar": "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-7da86fdaa68a-contact-sheet.json",
+      "status": "valid",
+      "errors": [],
+      "metadata": {
+        "asset_id": "asset-demo-7da86fdaa68a-contact-sheet",
+        "title": "真实视频多帧 ROI 证据",
+        "source_files": [
+          "D:\\py_daima\\mars-agent\\Code\\data\\video\\偏高.mp4"
+        ],
+        "run_id": "demo-7da86fdaa68a",
+        "model_profile": "model_free_visual_smoke",
+        "knowledge_version": "knowledge-pack-v1",
+        "script_version": "demo-run-1",
+        "generated_at": "2026-11-07T21:52:58.370742+00:00",
+        "width": null,
+        "height": null,
+        "status": "flow_validation"
+      }
+    },
+    {
+      "path": "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-86a7239e923f-contact-sheet.jpg",
+      "sidecar": "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-86a7239e923f-contact-sheet.json",
+      "status": "valid",
+      "errors": [],
+      "metadata": {
+        "asset_id": "asset-demo-86a7239e923f-contact-sheet",
+        "title": "真实视频多帧 ROI 证据",
+        "source_files": [
+          "D:\\py_daima\\mars-agent\\Code\\data\\video\\偏高.mp4"
+        ],
+        "run_id": "demo-86a7239e923f",
+        "model_profile": "model_free_visual_smoke",
+        "knowledge_version": "knowledge-pack-v1",
+        "script_version": "demo-run-1",
+        "generated_at": "2026-11-07T21:31:48.152334+00:00",
+        "width": null,
+        "height": null,
+        "status": "flow_validation"
+      }
+    },
+    {
+      "path": "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-917f241908b0-contact-sheet.jpg",
+      "sidecar": "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-917f241908b0-contact-sheet.json",
+      "status": "valid",
+      "errors": [],
+      "metadata": {
+        "asset_id": "asset-demo-917f241908b0-contact-sheet",
+        "title": "真实视频多帧 ROI 证据",
+        "source_files": [
+          "D:\\py_daima\\mars-agent\\Code\\data\\video\\正常.mp4"
+        ],
+        "run_id": "demo-917f241908b0",
+        "model_profile": "model_free_visual_smoke",
+        "knowledge_version": "knowledge-pack-v1",
+        "script_version": "demo-run-1",
+        "generated_at": "2026-11-07T21:52:58.379932+00:00",
+        "width": null,
+        "height": null,
+        "status": "flow_validation"
+      }
+    },
+    {
+      "path": "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-96ac3d586bf8-contact-sheet.jpg",
+      "sidecar": "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-96ac3d586bf8-contact-sheet.json",
+      "status": "valid",
+      "errors": [],
+      "metadata": {
+        "asset_id": "asset-demo-96ac3d586bf8-contact-sheet",
+        "title": "真实视频多帧 ROI 证据",
+        "source_files": [
+          "D:\\py_daima\\mars-agent\\Code\\data\\video\\正常.mp4"
+        ],
+        "run_id": "demo-96ac3d586bf8",
+        "model_profile": "model_free_visual_smoke",
+        "knowledge_version": "knowledge-pack-v1",
+        "script_version": "demo-run-1",
+        "generated_at": "2026-11-07T21:31:48.083098+00:00",
+        "width": null,
+        "height": null,
+        "status": "flow_validation"
+      }
+    },
+    {
+      "path": "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-a409b95ce0d8-contact-sheet.jpg",
+      "sidecar": "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-a409b95ce0d8-contact-sheet.json",
+      "status": "valid",
+      "errors": [],
+      "metadata": {
+        "asset_id": "asset-demo-a409b95ce0d8-contact-sheet",
+        "title": "真实视频多帧 ROI 证据",
+        "source_files": [
+          "D:\\py_daima\\mars-agent\\Code\\data\\video\\正常.mp4"
+        ],
+        "run_id": "demo-a409b95ce0d8",
+        "model_profile": "fgmvae-t-smoke-untrained-v1",
+        "knowledge_version": "knowledge-pack-v1",
+        "script_version": "demo-run-1",
+        "generated_at": "2026-11-07T21:46:56.820105+00:00",
+        "width": null,
+        "height": null,
+        "status": "flow_validation"
+      }
+    },
+    {
+      "path": "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-ace23204682f-contact-sheet.jpg",
+      "sidecar": "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-ace23204682f-contact-sheet.json",
+      "status": "valid",
+      "errors": [],
+      "metadata": {
+        "asset_id": "asset-demo-ace23204682f-contact-sheet",
+        "title": "真实视频多帧 ROI 证据",
+        "source_files": [
+          "D:\\py_daima\\mars-agent\\Code\\data\\video\\偏高.mp4"
+        ],
+        "run_id": "demo-ace23204682f",
+        "model_profile": "fgmvae-t-smoke-untrained-v1",
+        "knowledge_version": "knowledge-pack-v1",
+        "script_version": "demo-run-1",
+        "generated_at": "2026-11-07T21:32:22.079149+00:00",
+        "width": null,
+        "height": null,
+        "status": "flow_validation"
+      }
+    },
+    {
+      "path": "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-cb3c0e7a3dd7-contact-sheet.jpg",
+      "sidecar": "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-cb3c0e7a3dd7-contact-sheet.json",
+      "status": "valid",
+      "errors": [],
+      "metadata": {
+        "asset_id": "asset-demo-cb3c0e7a3dd7-contact-sheet",
+        "title": "真实视频多帧 ROI 证据",
+        "source_files": [
+          "D:\\py_daima\\mars-agent\\Code\\data\\video\\正常.mp4"
+        ],
+        "run_id": "demo-cb3c0e7a3dd7",
+        "model_profile": "fgmvae-t-smoke-untrained-v1",
+        "knowledge_version": "knowledge-pack-v1",
+        "script_version": "demo-run-1",
+        "generated_at": "2026-11-07T21:32:22.109764+00:00",
+        "width": null,
+        "height": null,
+        "status": "flow_validation"
+      }
+    }
+  ],
+  "claims": {
+    "real_runtime_assets_only": true,
+    "empty_directory_is_pending": false
+  }
+}

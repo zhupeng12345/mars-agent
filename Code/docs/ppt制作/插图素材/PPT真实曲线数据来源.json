@@ -1,0 +1,77 @@
+{
+  "visual_chart": {
+    "window_id": "video-n-788ade07-w0000",
+    "video_path": "Code\\data\\video\\正常.mp4",
+    "human_label": null,
+    "label_status": "unlabeled/weak",
+    "frame_ids": [
+      0,
+      15,
+      30,
+      45,
+      60,
+      75,
+      90,
+      105
+    ],
+    "timestamps_seconds": [
+      0.0,
+      0.501722580860956,
+      1.003445161721912,
+      1.505167742582868,
+      2.006890323443824,
+      2.50861290430478,
+      3.010335485165736,
+      3.512058066026692
+    ],
+    "static_features": {
+      "brightness_mean": 0.29602929949760437,
+      "brightness_std": 0.12002693116664886,
+      "gray_contrast": 0.12002693116664886,
+      "saturation_proxy": 0.5383507609367371,
+      "hot_pixel_ratio": 0.0
+    },
+    "dynamic_interval_means": {
+      "gray_change_rate": 0.0628998801112175,
+      "gray_change_std": 0.07071489840745926,
+      "structure_change_rate": 0.2641160258746355,
+      "area_change_rate": 0.011354646645486355
+    },
+    "expert_dim_note": "optional expert branch requires expert_dim=9; current image-supervised profile uses expert_dim=0"
+  },
+  "process_chart": {
+    "dataset": "Code\\data\\v1\\step2_ew_202111\\dataset.npz",
+    "sample_index": 26,
+    "split": "train",
+    "anchor": "2021-11-01T01:50:00.000000000",
+    "window_start": "2021-11-01T00:52:00.000000000",
+    "window_end": "2021-11-01T01:50:00.000000000",
+    "steps": 30,
+    "sample_minutes": 2,
+    "features": [
+      "settingVolt",
+      "potVolt",
+      "potCurrent",
+      "settingVoltMax",
+      "settingVoltMin",
+      "aeWaitInterval",
+      "fluctDelta",
+      "wavingDelta",
+      "slopeData",
+      "sumSlopeData",
+      "baseFeedingInter",
+      "actualFeedingInter",
+      "feedingState",
+      "andoeMoveState"
+    ],
+    "plotted_features": [
+      "potVolt",
+      "potCurrent",
+      "fluctDelta",
+      "actualFeedingInter"
+    ],
+    "future_event_label_30min": 1,
+    "video_alignment": "unknown",
+    "units": "not specified by source dataset"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "asset_id": "asset-page-03",
+  "page": 3,
+  "title": "火眼视觉证据",
+  "source_files": [
+    "agentic/agents/visual_evidence.py"
+  ],
+  "run_id": "ppt-demo-structure-001",
+  "model_profile": "presentation_structure_validation_v1",
+  "knowledge_version": "knowledge-pack-v1",
+  "generated_at": "2026-11-08T17:54:47.692388+00:00",
+  "width": 1600,
+  "height": 900,
+  "status": "flow_validation",
+  "script": "agentic.scripts.build_ppt_visual_assets",
+  "script_version": "ppt-assets-1",
+  "content_sha256": "89d978ac59486542",
+  "claim_policy": "structure validation only; no visual accuracy or production control claim"
+}

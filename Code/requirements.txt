@@ -23,6 +23,9 @@ streamlit-webrtc>=0.45.0
 pandas>=1.4.0            # streamlit_app.py 直接 import（原清单遗漏）
 plotly>=5.0.0            # streamlit_app.py 直接 import（原清单遗漏）
 
+# 多智能体流程编排（网页端“智能体协作”页面）
+langgraph>=1.0,<2.0
+
 # 大模型支持
 #   方式A（推荐，无需本地部署）：任意 OpenAI 兼容的多模态 API，见 config/llm_api.json
 #   方式B：本地 Ollama（可选）

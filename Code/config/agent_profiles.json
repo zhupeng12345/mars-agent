@@ -1,0 +1,39 @@
+{
+  "fake_json": {
+    "provider": "fake",
+    "model": "fake-json-v1",
+    "capabilities": ["text", "structured_json"],
+    "timeout": 5,
+    "max_tokens": 512,
+    "temperature": 0.0
+  },
+  "ollama_local": {
+    "provider": "ollama",
+    "base_url": "http://localhost:11434",
+    "model": "qwen3-vl:latest",
+    "capabilities": ["text", "vision", "structured_json"],
+    "timeout": 90,
+    "max_tokens": 1024,
+    "temperature": 0.1,
+    "think": false
+  },
+  "qwen_api": {
+    "provider": "openai_compatible",
+    "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "model": "qwen-vl-max",
+    "api_key_env": "DASHSCOPE_API_KEY",
+    "capabilities": ["text", "vision", "structured_json"],
+    "structured_output_mode": "json_object",
+    "timeout": 180,
+    "max_tokens": 1024,
+    "temperature": 0.1
+  },
+  "fallback_human": {
+    "provider": "fallback",
+    "model": "human-review",
+    "capabilities": ["human_review"],
+    "timeout": 0,
+    "max_tokens": 0,
+    "temperature": 0.0
+  }
+}

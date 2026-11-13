@@ -11,9 +11,17 @@ v6 相对 v5 的变化：
 """
 
 import base64
+import hashlib
+import html
+import json
 import os
 import sys
+import tempfile
+import threading
+import time
 from datetime import datetime
+from pathlib import Path
+from typing import Any, Mapping, Optional
 
 import cv2
 import plotly.graph_objects as go
@@ -39,9 +47,33 @@ except Exception as _exc:  # pragma: no cover
     llm_backend_summary = lambda: f"未加载（{_LLM_IMPORT_ERROR}）"   # noqa: E731
     llava_analyze_frame = None
 
+# 多智能体工作流是可选模块，保持旧版网页在未安装 LangGraph 时仍能打开。
+_AGENT_IMPORT_ERROR = None
+try:
+    from agentic.workflow import run_diagnosis_trace, workflow_spec
+except Exception as _agent_exc:  # pragma: no cover
+    _AGENT_IMPORT_ERROR = _agent_exc
+    run_diagnosis_trace = None
+    workflow_spec = None
+
+_MODERN_IMPORT_ERROR = None
+try:
+    from agentic.platform.hitl import HumanReviewService
+    from agentic.platform.presentation_review import PresentationReviewStore
+    from agentic.scripts.demo_run import (
+        load_demo_run as load_persisted_modern_demo,
+        resume_demo_review,
+        run_demo as run_modern_demo,
+    )
+except Exception as _modern_exc:  # pragma: no cover
+    _MODERN_IMPORT_ERROR = _modern_exc
+    HumanReviewService = None
+    PresentationReviewStore = None
+    run_modern_demo = None
+
 DEFAULT_SAMPLE_FRAMES = 24
 PAGES = [("perf", "性能监控"), ("diagnose", "过程诊断"), ("dosing", "加药分析"),
-         ("history", "历史管理"), ("settings", "系统设置")]
+         ("agent", "智能体协作"), ("history", "历史管理"), ("settings", "系统设置")]
 
 STATE_COLOR = {"C": "#4d8dff", "H": "#c03030", "N": "#3ddc84", "NoTarget": "#8b97c9"}
 STATE_TEXT = {"C": "温度偏低 COLD", "H": "严重过热 HOT", "N": "工况正常 NORMAL", "NoTarget": "等待目标 …"}
@@ -225,6 +257,16 @@ h4.ptitle::before{
     background:linear-gradient(180deg,var(--panel-a),var(--panel-b));}
 .statcard .lb{font-size:11px;color:var(--muted);letter-spacing:1.4px;}
 .statcard .vl{font-family:var(--mono);font-size:23px;font-weight:800;margin-top:3px;}
+.history-mobile-list{display:none;gap:7px;margin:6px 0 10px 0;}
+.history-record-card{border:1px solid var(--line);border-radius:4px;padding:9px 10px;
+    background:linear-gradient(180deg,var(--panel-a),var(--panel-b));min-width:0;}
+.history-record-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;
+    padding-bottom:6px;margin-bottom:5px;border-bottom:1px solid var(--line-soft);}
+.history-record-head strong{font-size:13px;overflow-wrap:anywhere;}
+.history-record-status{color:var(--accent-hi);font-weight:700;text-align:right;overflow-wrap:anywhere;}
+.history-record-fields{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;font-size:12px;}
+.history-record-fields span{color:var(--muted);}
+.history-record-fields b{color:var(--text);font-weight:600;overflow-wrap:anywhere;}
 
 /* ---------- 检测结果 / 汇总：紧凑网格 ---------- */
 .resgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:3px;}
@@ -296,6 +338,25 @@ div.stButton>button[kind="primary"]{
 [data-testid="stDataFrame"]{border:1px solid var(--line);}
 .stSlider label,.stSelectbox label,.stTextInput label{font-size:12px!important;color:var(--muted)!important;}
 [data-testid="stMetricValue"]{font-family:var(--mono);color:var(--accent-hi);}
+@media (max-width: 700px){
+    .st-key-historypage [data-testid="stHorizontalBlock"]{
+        flex-wrap:wrap!important;align-items:stretch!important;
+    }
+    .st-key-historypage [data-testid="stHorizontalBlock"] > [data-testid="column"]{
+        flex:1 1 100%!important;width:100%!important;min-width:0!important;max-width:100%!important;
+    }
+    .st-key-historypage .st-key-historykpis [data-testid="stHorizontalBlock"] > [data-testid="column"]{
+        flex:1 1 calc(50% - .5rem)!important;width:calc(50% - .5rem)!important;
+        min-width:0!important;max-width:calc(50% - .25rem)!important;
+    }
+    .st-key-historypage [data-testid="stDataFrame"],
+    .st-key-historypage [data-testid="stPlotlyChart"],
+    .st-key-historypage iframe{
+        width:100%!important;max-width:100%!important;min-width:0!important;
+    }
+    .st-key-historytable{display:none!important;}
+    .history-mobile-list{display:grid!important;}
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -320,6 +381,14 @@ def init_state():
     ss.setdefault("display_bgr", None)
     ss.setdefault("source_name", "")
     ss.setdefault("sample_frames", DEFAULT_SAMPLE_FRAMES)
+    ss.setdefault("agent_result", None)
+    ss.setdefault("agent_error", None)
+    ss.setdefault("agent_trace", [])
+    ss.setdefault("agent_workflow", None)
+    ss.setdefault("agent_job", None)
+    ss.setdefault("agent_source_sig", None)
+    ss.setdefault("modern_demo", None)
+    ss.setdefault("modern_error", None)
 
 
 init_state()
@@ -329,6 +398,14 @@ def reset_analysis():
     ss = st.session_state
     ss.results = ss.summary = ss.display_bgr = None
     ss.ai_report = ""
+    ss.agent_result = None
+    ss.agent_error = None
+    ss.agent_trace = []
+    ss.agent_workflow = None
+    ss.agent_job = None
+    ss.agent_source_sig = None
+    ss.modern_demo = None
+    ss.modern_error = None
     ss.analyzer.reset()
 
 
@@ -788,6 +865,1139 @@ def left_video_panel(scale=1.0, with_results=True):
             + '</div>', unsafe_allow_html=True)
 
 
+def agent_flow_chart(result, trace=None):
+    """Render the actual local workflow as a compact, auditable graph."""
+    trace = trace or []
+    visual = (result or {}).get("visual", {})
+    diagnosis = (result or {}).get("diagnosis", {})
+    review = (result or {}).get("review", {})
+    completed = {
+        event.get("node"): event
+        for event in trace
+        if event.get("status") in {"completed", "error"}
+    }
+    node_status = {
+        "perception_agent": completed.get("perception_agent", {}).get("status"),
+        "knowledge_agent": completed.get("knowledge_agent", {}).get("status"),
+        "diagnosis_agent": completed.get("diagnosis_agent", {}).get("status"),
+        "review_agent": completed.get("review_agent", {}).get("status"),
+        "finalize": completed.get("finalize", {}).get("status"),
+    }
+    nodes = [
+        ("多帧视觉取证", "YOLO ROI + F-GMVAE-T", bool(visual.get("has_target")), "perception_agent"),
+        ("知识检索", f"{len((result or {}).get('knowledge_sources', []))} 条来源",
+         bool((result or {}).get("knowledge_sources")), "knowledge_agent"),
+        ("诊断 Agent", "Qwen3-VL JSON", diagnosis.get("llm_status") == "qwen_vl_json", "diagnosis_agent"),
+        ("证据复核", "通过" if review.get("approved") else "需复核", bool(review), "review_agent"),
+        ("人工门控", "必须确认", False, "finalize"),
+    ]
+    fig = go.Figure()
+    for index in range(len(nodes) - 1):
+        fig.add_annotation(
+            x=index + 0.5, y=0, ax=index + 0.15, ay=0,
+            xref="x", yref="y", axref="x", ayref="y",
+            text="", showarrow=True, arrowhead=2, arrowsize=1,
+            arrowwidth=1.5, arrowcolor="#5a7bff",
+        )
+    for index, (title, detail, passed, node_id) in enumerate(nodes):
+        event = completed.get(node_id, {})
+        status = node_status.get(node_id)
+        if index == 4:
+            color = "#ffb020"
+        elif status == "error":
+            color = "#c03030"
+        elif status == "completed" and not passed:
+            color = "#ffb020"
+        elif passed:
+            color = "#3ddc84"
+        else:
+            color = "#c03030" if result else "#5a7bff"
+        if event.get("elapsed_ms") is not None:
+            detail = f"{detail} · {event['elapsed_ms']:.1f} ms"
+        fig.add_trace(go.Scatter(
+            x=[index], y=[0], mode="markers+text",
+            marker=dict(size=30, color=color, line=dict(color="#eef2ff", width=1.2)),
+            text=[f"{index + 1}"], textposition="middle center",
+            textfont=dict(size=12, color="#061027"),
+            customdata=[[title, detail]],
+            hovertemplate=(
+                "<b>%{customdata[0]}</b><br>状态: "
+                f"{status or '未运行'}<br>%{{customdata[1]}}<extra></extra>"
+            ),
+            showlegend=False,
+        ))
+        fig.add_annotation(
+            x=index, y=-0.34, xref="x", yref="y", text=f"<b>{title}</b><br><sup>{detail}</sup>",
+            showarrow=False, align="center", font=dict(size=11, color="#eef2ff"),
+        )
+    fig.update_layout(
+        height=150, margin=dict(l=18, r=18, t=16, b=46),
+        paper_bgcolor="rgba(0,0,0,0)", plot_bgcolor="rgba(0,0,0,0)",
+        xaxis=dict(range=[-0.45, len(nodes) - 0.55], visible=False),
+        yaxis=dict(range=[-0.62, 0.55], visible=False), showlegend=False,
+    )
+    return fig
+
+
+def run_agent_diagnosis():
+    """Run the optional graph against the currently loaded image/video."""
+    ss = st.session_state
+    if run_diagnosis_trace is None:
+        st.error(f"多智能体模块未加载：{_AGENT_IMPORT_ERROR}")
+        st.code("pip install -r Code\\agentic\\requirements.txt", language="powershell")
+        return
+    if not ss.get("src_bytes") or not ss.get("src_name"):
+        st.warning("请先通过左上角载入视频或图片。")
+        return
+
+    suffix = os.path.splitext(ss.src_name)[1] or ".bin"
+    temp_path = None
+    try:
+        with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as handle:
+            handle.write(ss.src_bytes)
+            temp_path = handle.name
+        node_labels = {
+            "perception_agent": "视觉取证 Agent（YOLO ROI + F-GMVAE-T）",
+            "knowledge_agent": "工艺知识 Agent（本地检索）",
+            "diagnosis_agent": "多模态诊断 Agent（Qwen3-VL）",
+            "review_agent": "证据复核 Agent（规则校验）",
+            "finalize": "人工复核门控",
+        }
+        stage = st.status("多智能体协作中：准备运行…", expanded=True)
+
+        def on_trace(event):
+            node = node_labels.get(event.get("node"), event.get("node", "未知节点"))
+            if event.get("status") == "running":
+                stage.update(label=f"正在执行：{node}", state="running")
+            elif event.get("status") == "completed":
+                elapsed = event.get("elapsed_ms")
+                suffix_text = f"（{elapsed:.0f} ms）" if elapsed is not None else ""
+                stage.update(label=f"已完成：{node} {suffix_text}", state="running")
+            elif event.get("status") == "error":
+                stage.update(label=f"节点失败：{node}", state="error")
+
+        trace_payload = None
+        try:
+            trace_payload = run_diagnosis_trace(
+                temp_path,
+                model=os.getenv("MARS_AGENT_MODEL", "qwen3-vl:latest"),
+                base_url=os.getenv("OLLAMA_HOST", "http://localhost:11434"),
+                vision_device=os.getenv("MARS_VISION_DEVICE", "cpu"),
+                trace_callback=on_trace,
+            )
+            if trace_payload.get("error"):
+                stage.update(label="多智能体流程中断，请查看下方错误和运行轨迹", state="error")
+            else:
+                stage.update(label="多智能体流程完成", state="complete")
+        except Exception:
+            stage.update(label="多智能体流程失败", state="error")
+            raise
+        if trace_payload is not None:
+            ss.agent_result = trace_payload["result"]
+            ss.agent_error = trace_payload.get("error")
+            ss.agent_trace = trace_payload.get("trace", [])
+            ss.agent_workflow = trace_payload.get("workflow")
+        ss.agent_source_sig = ss.src_sig
+    except Exception as exc:
+        ss.agent_result = None
+        ss.agent_error = str(exc)
+        ss.agent_trace = []
+        ss.agent_workflow = None
+        st.error(f"多智能体流程失败：{exc}")
+    finally:
+        if temp_path:
+            try:
+                os.unlink(temp_path)
+            except OSError:
+                pass
+
+
+def _modern_runtime_root() -> Path:
+    configured = os.environ.get("MARS_AGENT_RUNTIME_DIR", "")
+    return Path(configured).expanduser() if configured else Path(__file__).resolve().parents[1] / "runtime_data"
+
+
+def run_modern_agent_page(*, parent_run_id: Optional[str] = None, retake_of_run_id: Optional[str] = None):
+    """Run the current JEV + multi-frame + Process State demo from the UI."""
+    ss = st.session_state
+    if run_modern_demo is None:
+        ss.modern_error = f"modern agent backend unavailable: {_MODERN_IMPORT_ERROR}"
+        return
+    if not ss.get("src_bytes") or not ss.get("src_name"):
+        ss.modern_error = "Please load a video or image first."
+        return
+    try:
+        code_root = Path(__file__).resolve().parents[1]
+        runtime_root = _modern_runtime_root()
+        media_root = (
+            runtime_root / "modern_demos" / "retakes" / parent_run_id
+            if parent_run_id
+            else runtime_root / "modern_demos" / "media"
+        )
+        source_name = Path(ss.src_name).name
+        media_digest = hashlib.sha256(ss.src_bytes).hexdigest()
+        media_path = media_root / media_digest / source_name
+        media_path.parent.mkdir(parents=True, exist_ok=True)
+        if not media_path.exists():
+            media_path.write_bytes(ss.src_bytes)
+        output = runtime_root / f"streamlit_{time.time_ns()}.json"
+        profile = ss.get("modern_llm_profile") or os.environ.get("MARS_AGENT_LLM_PROFILE", "fake_json")
+        jev_backend = ss.get("modern_jev_backend") or os.environ.get("MARS_AGENT_JEV_BACKEND", "deterministic_rule")
+        ss.modern_demo = run_modern_demo(
+            code_root,
+            media_path,
+            output=output,
+            llm_profile=profile,
+            jev_backend=jev_backend,
+            runtime_dir=runtime_root,
+            native_hitl=True,
+            parent_run_id=parent_run_id,
+            retake_of_run_id=retake_of_run_id,
+            jev_policy_registry_root=os.environ.get("MARS_AGENT_RSI_REGISTRY"),
+        )
+        ss.modern_error = None
+    except Exception as exc:  # keep the UI usable and show the exact failure
+        ss.modern_demo = None
+        ss.modern_error = str(exc)
+
+
+def _run_modern_retake(parent_demo: Mapping[str, Any], uploaded_file: Any) -> None:
+    """Persist replacement media and start a new run linked to its retake parent."""
+    parent_run_id = str(parent_demo.get("run_id", ""))
+    runtime_root = _modern_runtime_root()
+    decision = (parent_demo.get("human_review") or {}).get("decision") or {}
+    if not parent_run_id or decision.get("action") != "request_retake":
+        st.session_state.modern_error = "A retake can only continue a run with a recorded request_retake decision."
+        return
+    try:
+        persisted_parent = load_persisted_modern_demo(runtime_root, parent_run_id)
+        persisted_decision = (persisted_parent.get("human_review") or {}).get("decision") or {}
+        parent_audit = HumanReviewService(runtime_root).history(run_id=parent_run_id)
+    except Exception as exc:
+        st.session_state.modern_error = f"Unable to verify the parent retake audit: {exc}"
+        return
+    if (
+        persisted_decision.get("action") != "request_retake"
+        or not any(item.get("action") == "request_retake" for item in parent_audit)
+    ):
+        st.session_state.modern_error = "The persisted parent run has no request_retake audit; continuation was not started."
+        return
+    if uploaded_file is None:
+        st.session_state.modern_error = "Upload a replacement image or video before starting the retake run."
+        return
+    try:
+        data = uploaded_file.getvalue()
+        filename = Path(str(uploaded_file.name).replace("\\", "/")).name
+        suffix = Path(filename).suffix.lower()
+        if suffix not in {".jpg", ".jpeg", ".png", ".bmp", ".mp4", ".avi", ".mov"}:
+            raise ValueError("unsupported retake media type")
+        st.session_state.src_bytes = data
+        st.session_state.src_name = filename
+        st.session_state.src_mime = getattr(uploaded_file, "type", "") or ""
+        run_modern_agent_page(parent_run_id=parent_run_id, retake_of_run_id=parent_run_id)
+        if st.session_state.get("modern_error"):
+            st.session_state.modern_demo = parent_demo
+    except Exception as exc:
+        st.session_state.modern_error = f"Unable to start retake run: {exc}"
+
+
+def _presentation_demo_catalog():
+    """Return the local, reproducible demo traces used by the PPT walkthrough."""
+    code_root = Path(__file__).resolve().parents[1]
+    configured_dir = os.environ.get("MARS_AGENT_PRESENTATION_DEMO_DIR", "").strip()
+    demo_dir = Path(configured_dir).expanduser() if configured_dir else next(
+        (candidate for candidate in (
+            code_root / "runtime_data" / "presentation_demo",
+            code_root / "runtime_data" / "presentation_demos",
+        ) if candidate.exists()),
+        code_root / "runtime_data" / "presentation_demo",
+    )
+    if not demo_dir.exists():
+        return {}
+    catalog = {}
+    for path in sorted(demo_dir.glob("*.json")):
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if isinstance(payload, dict) and path.name not in {"index.json"} and not path.name.endswith(".sidecar.json"):
+            case_id = str(payload.get("presentation_case", path.stem))
+            catalog[case_id] = {"path": path, "payload": payload}
+    return catalog
+
+
+def _load_latest_evaluation_report():
+    """Load the latest generated aggregate evaluation, if one is available."""
+    runtime_dir = _modern_runtime_root()
+    candidates = [
+        runtime_dir / "evaluation_report.json",
+        *runtime_dir.glob("evaluation.e2_*.json"),
+        *runtime_dir.glob("evaluation.e3_*.json"),
+    ]
+    candidates = [path for path in candidates if path.is_file()]
+    for path in sorted(candidates, key=lambda item: item.stat().st_mtime, reverse=True):
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if isinstance(payload, dict) and payload.get("schema_version") == "evaluation-report-1":
+            return path, payload
+    return None, None
+
+
+def _load_latest_delivery_snapshot():
+    """Load the newest fail-closed delivery evidence audit for the UI."""
+    runtime_dir = _modern_runtime_root()
+    candidates = [
+        *runtime_dir.glob("delivery_snapshot*.json"),
+        *runtime_dir.glob("**/delivery_snapshot*.json"),
+    ]
+    seen: set[Path] = set()
+    for path in sorted((item for item in candidates if item.is_file()), key=lambda item: item.stat().st_mtime, reverse=True):
+        if path in seen:
+            continue
+        seen.add(path)
+        try:
+            payload = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError):
+            continue
+        if isinstance(payload, dict) and payload.get("schema_version") == "delivery-snapshot-1":
+            return path, payload
+    return None, None
+
+
+def _normalize_presentation_payload(payload):
+    """Adapt compact PPT fixtures to the normal modern-page payload shape."""
+    if not isinstance(payload, dict) or payload.get("schema_version") != "presentation-demo-1":
+        return payload
+    normalized = dict(payload)
+    route_decision = dict(payload.get("route_decision") or {})
+    if route_decision.get("implementation") == "presentation_fixture":
+        route_decision.update({
+            "router_backend": "deterministic_rule",
+            "router_version": "deterministic_alu_router_v1",
+            "gate_version": "alu-jev-safety-0.1",
+            "model_profile": "deterministic_alu_router_v1",
+            "policy_version": "base",
+            "policy_hash": "builtin",
+        })
+    input_manifest = dict(payload.get("input") or {})
+    source = input_manifest.get("source", "")
+    input_manifest.setdefault("path", source)
+    input_manifest.setdefault("media_type", "video" if input_manifest.get("kind") == "video" else "fixture")
+    input_manifest.setdefault("width", "—")
+    input_manifest.setdefault("height", "—")
+    normalized["input"] = input_manifest
+    normalized["quality"] = {
+        "quality_status": input_manifest.get("quality_status", "pass"),
+        "issues": [] if input_manifest.get("quality_status") == "pass" else ["presentation_fixture_quality_gate"],
+        "target_present": input_manifest.get("quality_status") not in {"retake", "human"},
+    }
+    normalized["visual"] = dict(payload.get("visual_evidence") or {})
+    normalized["pre_route_decision"] = route_decision
+    normalized.setdefault("router_backend", route_decision.get("router_backend"))
+    normalized.setdefault("router_version", route_decision.get("router_version"))
+    normalized.setdefault("knowledge", [])
+    normalized.setdefault("cases", [])
+    normalized.setdefault("knowledge_version", "knowledge-pack-v1")
+    normalized.setdefault("prompt_version", "diagnosis-aggregator-v2-flow-validation")
+    ticket = {
+        "ticket_id": f"ticket-{payload.get('run_id', 'presentation')}",
+        "run_id": payload.get("run_id", ""),
+        "thread_id": payload.get("thread_id", ""),
+        "stage": "human_review",
+        "status": "waiting_review",
+        "route": route_decision.get("route", "unknown"),
+    }
+    normalized["ticket"] = ticket
+    agents = list(payload.get("agents") or [])
+    trace = payload.get("graph_trace")
+    if not isinstance(trace, list):
+        trace = [{
+            "run_id": payload.get("run_id", ""),
+            "thread_id": payload.get("thread_id", ""),
+            "node": f"full_loop_worker:{item.get('agent_id', 'agent')}",
+            "status": item.get("status", "completed"),
+            "elapsed_ms": item.get("duration_ms"),
+            "agent_id": item.get("agent_id", "agent"),
+            "attempt": item.get("attempt", 1),
+        } for item in agents]
+        trace.insert(0, {
+            "run_id": payload.get("run_id", ""),
+            "thread_id": payload.get("thread_id", ""),
+            "node": "jev_router",
+            "status": "completed",
+            "elapsed_ms": None,
+            "route": route_decision.get("route", "unknown"),
+            "router_backend": route_decision.get("router_backend", "unknown"),
+            "model_profile": route_decision.get("model_profile", "unknown"),
+            "gate_version": route_decision.get("gate_version", "unknown"),
+            "policy_version": route_decision.get("policy_version", "base"),
+            "policy_hash": route_decision.get("policy_hash", "builtin"),
+        })
+    graph_result = payload.get("graph_result") if isinstance(payload.get("graph_result"), dict) else {}
+    route_history = payload.get("route_history") or graph_result.get("route_history") or [route_decision.get("route", "unknown")]
+    initial_route = payload.get("initial_route") or graph_result.get("initial_route") or route_history[0]
+    upgrade_count = payload.get("upgrade_count", graph_result.get("upgrade_count", 0))
+    final_route = str(route_history[-1]) if route_history else route_decision.get("route", "unknown")
+    ticket = graph_result.get("ticket") if isinstance(graph_result.get("ticket"), dict) else ticket
+    normalized["graph"] = {
+        "route": final_route,
+        "route_decision": route_decision,
+        "status": "waiting_review",
+        "trace": trace,
+        "evidence_bundle": agents,
+        "ticket": ticket,
+        "result": {
+            "diagnosis": graph_result.get("diagnosis", payload.get("diagnosis", {})),
+            "review": graph_result.get("review", payload.get("review", payload.get("human_review", {}))),
+            "evidence_bundle": agents,
+            "ticket": ticket,
+            "initial_route": initial_route,
+            "route_history": route_history,
+            "upgrade_count": upgrade_count,
+        },
+    }
+    return normalized
+
+
+def _load_presentation_demo(case_id):
+    """Load a precomputed trace without invoking a model provider."""
+    catalog = _presentation_demo_catalog()
+    item = catalog.get(case_id)
+    if not item:
+        raise FileNotFoundError(f"presentation demo not found: {case_id}")
+    payload = _normalize_presentation_payload(item["payload"])
+    if PresentationReviewStore is not None:
+        persisted = PresentationReviewStore(_modern_runtime_root()).load(str(payload.get("run_id", "")))
+        if persisted is not None:
+            payload = persisted
+    code_root = Path(__file__).resolve().parents[1]
+    manifest = payload.get("input") if isinstance(payload.get("input"), dict) else {}
+    source_value = manifest.get("path") or manifest.get("input_path") or payload.get("source_media")
+    if source_value:
+        source = Path(str(source_value))
+        candidates = [source, code_root / source, code_root.parent / source]
+        source = next((candidate for candidate in candidates if candidate.exists()), source)
+        if source.exists() and source.is_file():
+            st.session_state.src_bytes = source.read_bytes()
+            st.session_state.src_name = source.name
+            st.session_state.src_sig = f"presentation:{case_id}:{source.stat().st_mtime_ns}"
+    st.session_state.modern_demo = payload
+    st.session_state.modern_error = None
+    st.session_state.presentation_case = case_id
+
+
+def _apply_presentation_review(demo, action, amendment=""):
+    """Apply an allowlisted review action to a presentation-only trace."""
+    if PresentationReviewStore is None:
+        raise RuntimeError("presentation review storage is unavailable")
+    return PresentationReviewStore(_modern_runtime_root()).apply(demo, action, amendment)
+
+
+def _presentation_report(demo):
+    """Build a deterministic archive report for presentation-only traces."""
+    review = dict(demo.get("human_review") or {})
+    graph = dict(demo.get("graph") or {})
+    final_diagnosis = dict((graph.get("result") or {}).get("diagnosis") or demo.get("diagnosis") or {})
+    return {
+        "schema_version": "presentation-report-1",
+        "status": graph.get("status", review.get("status", "waiting_review")),
+        "claim_status": "flow_validation",
+        "run_id": demo.get("run_id"),
+        "thread_id": demo.get("thread_id"),
+        "route": graph.get("route", demo.get("route")),
+        "initial_route": (graph.get("result") or {}).get("initial_route"),
+        "route_history": (graph.get("result") or {}).get("route_history", []),
+        "upgrade_count": (graph.get("result") or {}).get("upgrade_count", 0),
+        "final_diagnosis": final_diagnosis,
+        "router": demo.get("router", {}),
+        "human_review": review,
+        "trace": demo.get("trace", []),
+        "agents": demo.get("agents", []),
+        "case_candidate": demo.get("case_candidate"),
+        "knowledge_version": demo.get("knowledge_version"),
+        "prompt_version": demo.get("prompt_version"),
+        "claim_policy": demo.get("claims", {
+            "metrics": False,
+            "real_superheat_measurement": False,
+            "video_process_alignment": False,
+        }),
+    }
+
+
+def _presentation_report_exports(demo, report):
+    """Return report export payloads without depending on the durable service."""
+    run_id = str(report.get("run_id") or "presentation-demo")
+    report_json = json.dumps(report, ensure_ascii=False, indent=2)
+    review = report.get("human_review") or {}
+    agent_rows = report.get("agents") or []
+    markdown = "\n".join([
+        f"# 铝电解火眼多智能体演示报告",
+        "",
+        f"- run_id: `{run_id}`",
+        f"- route: `{report.get('route', '—')}`",
+        f"- status: `{report.get('status', '—')}`",
+        f"- review: `{review.get('action', 'pending')}`",
+        f"- claim status: `{report.get('claim_status', 'flow_validation')}`",
+        "",
+        "## Agent 结果",
+        "",
+        *[f"- `{row.get('agent_id', 'agent')}`: {row.get('status', 'unknown')} / attempt {row.get('attempt', 1)}" for row in agent_rows],
+        "",
+        "该报告用于流程演示和回放，不代表视觉精度、真实过热度测量或视频-过程数据对齐效果。",
+        "",
+    ])
+    html = "<html><head><meta charset='utf-8'><title>铝电解火眼多智能体演示报告</title></head><body>"
+    html += f"<h1>铝电解火眼多智能体演示报告</h1><p>run_id: <code>{run_id}</code></p>"
+    html += f"<p>route: <code>{report.get('route', '—')}</code> · status: <code>{report.get('status', '—')}</code> · review: <code>{review.get('action', 'pending')}</code></p>"
+    html += "<h2>Agent 结果</h2><ul>"
+    html += "".join(f"<li><code>{row.get('agent_id', 'agent')}</code>: {row.get('status', 'unknown')} / attempt {row.get('attempt', 1)}</li>" for row in agent_rows)
+    html += "</ul><p>流程验证素材，不代表模型精度、真实过热度测量或视频-过程数据对齐效果。</p></body></html>"
+    png_bytes = None
+    try:
+        from PIL import Image, ImageDraw
+        image = Image.new("RGB", (1600, 900), "#08122d")
+        draw = ImageDraw.Draw(image)
+        lines = [
+            "铝电解火眼多智能体演示报告",
+            f"run_id: {run_id}",
+            f"route: {report.get('route', '—')}    status: {report.get('status', '—')}",
+            f"review: {review.get('action', 'pending')}    claim: flow_validation",
+            "",
+            "Agent 状态:",
+        ]
+        lines.extend(f"  {row.get('agent_id', 'agent')}: {row.get('status', 'unknown')}" for row in agent_rows)
+        lines.extend(["", "流程验证素材，不代表模型精度或真实过热度测量。"])
+        draw.multiline_text((80, 70), "\n".join(lines), fill="#eef2ff", spacing=18)
+        from io import BytesIO
+        buffer = BytesIO()
+        image.save(buffer, format="PNG")
+        png_bytes = buffer.getvalue()
+    except Exception:
+        png_bytes = None
+    return {
+        "json": report_json,
+        "markdown": markdown,
+        "html": html,
+        "png": png_bytes,
+    }
+
+
+def _render_modern_agent_page():
+    """Render the implemented multi-agent path and durable HITL controls."""
+    ss = st.session_state
+    demo = ss.get("modern_demo")
+    st.markdown('<h4 class="ptitle big">多智能体协作流程</h4>', unsafe_allow_html=True)
+    st.caption("多帧视觉取证 → Process State → 风险感知 JEV 路由 → LangGraph 多 Agent → 人工确认 → 报告归档")
+    c1, c2, c3 = st.columns([1.5, 1.5, 4.5])
+    with c1:
+        if st.button("▶ 运行多智能体", type="primary", key="modern_run"):
+            run_modern_agent_page()
+            st.rerun()
+    with c2:
+        if st.button("清除流程", key="modern_clear"):
+            ss.modern_demo = None
+            ss.modern_error = None
+            st.rerun()
+    with c3:
+        st.caption(f"当前输入：{ss.get('src_name') or '未加载'}")
+    runtime_root = _modern_runtime_root()
+    try:
+        pending_runs = [
+            item for item in HumanReviewService(runtime_root).pending_reviews()
+            if (runtime_root / "modern_demos" / f"{item.get('run_id', '')}.json").is_file()
+        ] if HumanReviewService is not None else []
+    except Exception:
+        pending_runs = []
+    if pending_runs:
+        with st.expander("恢复待审任务", expanded=not bool(demo)):
+            options = [str(item.get("run_id", "")) for item in pending_runs]
+            selected_run = st.selectbox("待审 run_id", options, key="modern_pending_run_select")
+            selected_checkpoint = next((item for item in pending_runs if item.get("run_id") == selected_run), {})
+            st.caption(f"thread_id: {selected_checkpoint.get('thread_id', '')} · route: {selected_checkpoint.get('route', '')}")
+            if st.button("加载待审任务", key="load_pending_modern_demo"):
+                try:
+                    restored = load_persisted_modern_demo(runtime_root, selected_run)
+                    ss.modern_demo = restored
+                    media_path = Path(str((restored.get("input") or {}).get("path", "")))
+                    if media_path.is_file():
+                        ss.src_bytes = media_path.read_bytes()
+                        ss.src_name = media_path.name
+                    ss.modern_error = None
+                    st.rerun()
+                except Exception as exc:
+                    ss.modern_error = f"Unable to restore pending run: {exc}"
+    presentation_catalog = _presentation_demo_catalog()
+    if presentation_catalog:
+        with st.container(border=True):
+            st.markdown('<h4 class="ptitle">汇报演示模式</h4>', unsafe_allow_html=True)
+            st.caption("加载预生成的结构化 trace，现场无需等待模型调用；所有结果标记为 flow_validation。")
+            demo_options = list(presentation_catalog)
+            current_case = ss.get("presentation_case")
+            selected_case = st.selectbox(
+                "演示案例",
+                demo_options,
+                index=demo_options.index(current_case) if current_case in demo_options else 0,
+                format_func=lambda value: str((presentation_catalog[value]["payload"] or {}).get("presentation_title", value)),
+                key="presentation_case_select",
+            )
+            if st.button("加载演示 Trace", key="load_presentation_demo", use_container_width=True):
+                try:
+                    _load_presentation_demo(selected_case)
+                    st.rerun()
+                except Exception as exc:
+                    ss.modern_error = f"演示 Trace 加载失败：{exc}"
+    jev_options = ("deterministic_rule", "laya_adapter")
+    configured_jev = ss.get("modern_jev_backend", os.environ.get("MARS_AGENT_JEV_BACKEND", "deterministic_rule"))
+    ss.modern_jev_backend = st.selectbox(
+        "JEV 路由后端",
+        jev_options,
+        index=jev_options.index(configured_jev) if configured_jev in jev_options else 0,
+        format_func=lambda value: "Laya typed-decisions + 工艺安全门" if value == "laya_adapter" else "确定性规则基线",
+        key="modern_jev_backend_select",
+        help="Laya 后端仅在安全规则判定为复杂任务时参与路径建议；硬安全条件仍由工艺规则门控。首次调用可能需要下载 Laya 模型权重。",
+    )
+    ss.modern_llm_profile = st.selectbox(
+        "诊断聚合模型",
+        ("fake_json", "ollama_local", "qwen_api", "fallback_human"),
+        index=("fake_json", "ollama_local", "qwen_api", "fallback_human").index(ss.get("modern_llm_profile", os.environ.get("MARS_AGENT_LLM_PROFILE", "fake_json"))) if ss.get("modern_llm_profile", os.environ.get("MARS_AGENT_LLM_PROFILE", "fake_json")) in {"fake_json", "ollama_local", "qwen_api", "fallback_human"} else 0,
+        key="modern_llm_profile_select",
+        help="JEV 是诊断路径路由层；Laya 后端为可选开源路由模型适配。安全门控负责硬约束，诊断聚合模型仅在 full_loop 并行取证后调用。",
+    )
+    if ss.get("modern_error"):
+        st.error(ss.modern_error)
+    if not demo:
+        st.info("加载视频后运行，页面将显示 JEV 路由、并行 Agent 和人工审核状态。")
+        return
+    graph = demo.get("graph", {})
+    visual = demo.get("visual", {})
+    quality = demo.get("quality", {})
+    process = demo.get("process_state", {})
+    route = graph.get("route", "unknown")
+    status = graph.get("status", graph.get("result", {}).get("status", "unknown"))
+    status_label = {
+        "waiting_review": "待人工确认",
+        "waiting_for_retake": "待补拍",
+        "demo_summary_waiting_review": "演示待人工确认",
+        "retake_requested": "请求补拍",
+        "request_more_evidence": "待补充证据",
+        "completed": "已完成",
+        "approved": "已批准",
+        "rejected": "已驳回",
+        "failed": "执行失败",
+    }.get(str(status), str(status))
+    process_status = {
+        "demo_summary": "演示摘要",
+    }.get(str(process.get("process_regime", "unknown")), str(process.get("process_regime", "unknown")))
+    with st.container(border=True):
+        st.markdown('<h4 class="ptitle">诊断状态</h4>', unsafe_allow_html=True)
+        m1, m2, m3, m4, m5 = st.columns(5)
+        m1.metric("JEV 诊断路径", route)
+        m2.metric("质量门控", quality.get("quality_status", "unknown"))
+        m3.metric("视觉置信度", f"{float(visual.get('confidence', 0.0)) * 100:.1f}%")
+        m4.metric("过程状态", process_status)
+        m5.metric("流程状态", status_label)
+        flow_result = graph.get("result", {})
+        route_history = flow_result.get("route_history", [])
+        if isinstance(route_history, list) and len(route_history) > 1:
+            st.caption(f"诊断循环：{' → '.join(str(item) for item in route_history)} · 升级 {flow_result.get('upgrade_count', 0)} 次")
+        ticket = demo.get("ticket") or graph.get("ticket", {}) or {}
+        route_info = demo.get("jev_router", {})
+        policy_version = route_info.get("policy_version", (demo.get("pre_route_decision") or {}).get("policy_version", "base"))
+        rsi_status = (demo.get("rsi_runtime") or {}).get("status", "unavailable")
+        st.caption(f"run_id: {demo.get('run_id')} · thread_id: {demo.get('thread_id')} · ticket_id: {ticket.get('ticket_id', '—')} · stage: {ticket.get('stage', '—')} · backend: {route_info.get('decision_backend', 'unknown')} · profile: {route_info.get('model_profile', 'unknown')} · RSI: {policy_version}/{rsi_status} · alignment_quality: {process.get('alignment_quality', 'unknown')}")
+    with st.container(border=True):
+        st.markdown('<h4 class="ptitle">输入与多帧视觉证据</h4>', unsafe_allow_html=True)
+        preview_left, preview_right = st.columns(2)
+        with preview_left:
+            media_type = str((demo.get("input") or {}).get("media_type", ""))
+            if ss.get("src_bytes"):
+                if media_type == "video":
+                    st.video(ss.src_bytes)
+                else:
+                    st.image(ss.src_bytes, use_container_width=True)
+            st.caption(f"{demo.get('input', {}).get('width', '—')} × {demo.get('input', {}).get('height', '—')} · {media_type or 'input'}")
+        with preview_right:
+            contact = visual.get("contact_sheet")
+            contact_path = Path(str(contact)) if contact else None
+            if contact_path and not contact_path.is_absolute():
+                code_root = Path(__file__).resolve().parents[1]
+                candidates = (code_root / contact_path, code_root.parent / contact_path)
+                contact_path = next((item for item in candidates if item.exists()), contact_path)
+            if contact_path and contact_path.exists():
+                st.image(str(contact_path), caption="ROI 多帧 contact sheet", use_container_width=True)
+            else:
+                st.info("当前运行未生成可显示的 contact sheet")
+            st.caption(f"帧序列：{visual.get('frame_ids', [])} · 关键帧：{visual.get('key_frame_ids', [])} · 丢失帧：{visual.get('missing_count', 0)}")
+    trace = graph.get("trace", [])
+    if trace:
+        with st.container(border=True):
+            st.markdown('<h4 class="ptitle">Agent 协作轨迹</h4>', unsafe_allow_html=True)
+            rows = [{"节点": event.get("node"), "状态": event.get("status"), "耗时(ms)": event.get("elapsed_ms"), "摘要": json.dumps({k: v for k, v in event.items() if k not in {"run_id", "thread_id", "node", "status", "elapsed_ms"}}, ensure_ascii=False)} for event in trace]
+            st.dataframe(rows, use_container_width=True, hide_index=True)
+    evidence_bundle = graph.get("evidence_bundle") or graph.get("result", {}).get("evidence_bundle", [])
+    if evidence_bundle:
+        with st.container(border=True):
+            st.markdown('<h4 class="ptitle">并行 Agent 状态</h4>', unsafe_allow_html=True)
+            agent_columns = st.columns(min(5, max(1, len(evidence_bundle))))
+            for column, item in zip(agent_columns, evidence_bundle):
+                agent_id = str(item.get("agent_id", item.get("node", "agent")))
+                label = {
+                    "visual_review": "多帧视觉复核",
+                    "evidence_quality": "证据完整性",
+                    "knowledge_rag": "工艺知识 RAG",
+                    "case_compare": "特殊案例比对",
+                    "process_state": "Process State",
+                }.get(agent_id, agent_id)
+                status_value = str(item.get("status", "unknown"))
+                with column:
+                    st.metric(label, "完成" if status_value == "completed" else status_value)
+                    st.caption(f"耗时 {item.get('elapsed_ms', '—')} ms · attempt {item.get('attempt', 1)}")
+                    evidence_ids = item.get("evidence_ids") or item.get("output", {}).get("evidence_ids", [])
+                    st.caption(f"证据 {len(evidence_ids) if isinstance(evidence_ids, list) else 0} 条")
+            worker_rows = []
+            for item in evidence_bundle:
+                metadata = item.get("metadata") if isinstance(item.get("metadata"), dict) else {}
+                worker_rows.append({
+                    "Agent": item.get("agent_id", item.get("node", "agent")),
+                    "策略": item.get("retry_policy_id", metadata.get("retry_policy_id", "—")),
+                    "超时(s)": item.get("timeout_s", metadata.get("timeout_s", "—")),
+                    "Attempt": item.get("attempt", metadata.get("attempt", 1)),
+                    "重试": item.get("retry_count", metadata.get("retry_count", 0)),
+                    "退避(s)": item.get("retry_delays_seconds", metadata.get("retry_delays_seconds", [])),
+                    "错误": item.get("error_code", metadata.get("error_code")) or "—",
+                })
+            with st.expander("Worker 超时与重试策略"):
+                st.dataframe(worker_rows, use_container_width=True, hide_index=True)
+    pending = demo.get("human_review") or {}
+    if pending.get("status") in {"waiting_review", "waiting_for_retake"}:
+        with st.container(border=True):
+            st.markdown('<h4 class="ptitle">人工确认</h4>', unsafe_allow_html=True)
+            st.caption("当前任务已暂停，审核结果会写入持久化审计记录。")
+            amendment = st.text_area("amend 内容（可选）", key="modern_amendment")
+            buttons = st.columns(4)
+            for column, action, label in zip(buttons, ("approve", "amend", "reject", "request_retake"), ("通过", "修改并通过", "驳回", "请求补拍")):
+                with column:
+                    if st.button(label, key=f"modern_review_{action}", use_container_width=True):
+                        amendments = {"operator_note": amendment} if action == "amend" and amendment else {}
+                        if demo.get("schema_version") == "presentation-demo-1":
+                            ss.modern_demo = _apply_presentation_review(demo, action, amendment)
+                        elif demo.get("human_review_backend") == "langgraph_sqlite_interrupt":
+                            ss.modern_demo = resume_demo_review(
+                                runtime_root,
+                                demo["run_id"],
+                                action=action,
+                                reviewer_id="streamlit_operator",
+                                reason="web review",
+                                amendments=amendments,
+                            )
+                        else:
+                            service = HumanReviewService(runtime_root)
+                            outcome = service.resume(demo["run_id"], action=action, reviewer_id="streamlit_operator", reason="web review", amendments=amendments)
+                            demo["human_review"] = outcome
+                            demo["graph"]["status"] = outcome.get("result", {}).get("status", outcome.get("status"))
+                            ss.modern_demo = demo
+                        st.rerun()
+    with st.expander("视觉证据", expanded=True):
+        st.json(visual)
+    decision = pending.get("decision") or {}
+    if (
+        demo.get("human_review_backend") == "langgraph_sqlite_interrupt"
+        and decision.get("action") == "request_retake"
+    ):
+        with st.container(border=True):
+            st.markdown('<h4 class="ptitle">补拍续检</h4>', unsafe_allow_html=True)
+            st.caption(f"本次补拍将创建新的 run，并关联父任务 {demo.get('run_id')}。")
+            replacement = st.file_uploader(
+                "补拍图片或视频",
+                type=["jpg", "jpeg", "png", "bmp", "mp4", "avi", "mov"],
+                key="modern_retake_upload",
+            )
+            if st.button("开始补拍续检", key="modern_start_retake", type="primary"):
+                _run_modern_retake(demo, replacement)
+                if not ss.get("modern_error"):
+                    st.rerun()
+    with st.expander("Process State Agent"):
+        st.json(process)
+        variables = ((process.get("variables") or {}).get("by_name") if isinstance(process, dict) else None)
+        if isinstance(variables, dict):
+            st.dataframe(
+                [{"变量": name, "分组": value.get("group", ""), "均值": value.get("mean"), "趋势": value.get("slope_per_step"), "缺失": value.get("missing", False)} for name, value in variables.items()],
+                use_container_width=True, hide_index=True,
+            )
+    with st.expander("JEV 路由依据、案例与工艺知识"):
+        route_decision = demo.get("pre_route_decision") or graph.get("route_decision") or {}
+        st.json({
+            "route": route_decision.get("route", route),
+            "router_backend": route_decision.get("router_backend", demo.get("router_backend", "deterministic_rule")),
+            "router_version": route_decision.get("router_version", demo.get("router_version", "deterministic_alu_router_v1")),
+            "reasons": route_decision.get("reasons", []),
+            "confidence": route_decision.get("confidence"),
+            "risk_level": route_decision.get("risk_level"),
+            "gate_version": route_decision.get("gate_version"),
+            "similar_case_ids": route_decision.get("similar_case_ids", []),
+            "evidence_gaps": route_decision.get("evidence_gaps", []),
+        })
+        st.markdown("**案例匹配**")
+        st.json(demo.get("cases", []))
+        st.markdown("**RAG 引用**")
+        knowledge_rows = demo.get("knowledge", [])
+        if not knowledge_rows:
+            st.info("本次任务没有返回知识引用")
+        else:
+            from agentic.platform.knowledge import VersionedKnowledgeBase
+
+            code_root = Path(__file__).resolve().parents[1]
+            knowledge_path = code_root / "agentic" / "knowledge" / "rules_v1.jsonl"
+            knowledge_base = VersionedKnowledgeBase(knowledge_path)
+            for index, citation in enumerate(knowledge_rows, start=1):
+                if not isinstance(citation, dict):
+                    continue
+                source_id = str(citation.get("source_id", ""))
+                rule = knowledge_base.get_rule(source_id)
+                if rule is None:
+                    st.warning(f"引用 {source_id or index} 不在当前知识包中")
+                    continue
+                st.markdown(f"**{rule.title}** · `{rule.rule_id}`")
+                st.caption(f"来源：{rule.source} · 版本：{rule.source_version} · 生效日期：{rule.effective_date} · 风险：{rule.risk_level} · 检索分数：{citation.get('score', '—')}")
+                st.caption(f"适用范围：{'、'.join(rule.applicability) or '未限定'} · 前置条件：{'；'.join(rule.preconditions) or '无'}")
+                locator = str(citation.get("locator") or f"rule:{rule.rule_id}:paragraph:1")
+                st.caption(f"定位：{locator}")
+                st.write(rule.text)
+                st.download_button(
+                    "下载引用原文",
+                    data=rule.text,
+                    file_name=f"{rule.rule_id}.txt",
+                    mime="text/plain",
+                    key=f"knowledge_source_download_{index}_{rule.rule_id}",
+                    help="下载当前版本的知识原文片段，保留 source_id、版本和定位信息。",
+                )
+    with st.expander("模型、知识、提示词与 Ticket 版本"):
+        review_payload = graph.get("result", {}).get("review", graph.get("review", {}))
+        st.json({
+            "visual_model": visual.get("model_profile"),
+            "llm_gateway": demo.get("llm_gateway", {}),
+            "knowledge_version": demo.get("knowledge_version"),
+            "prompt_version": demo.get("prompt_version", "diagnosis-aggregator-v2"),
+            "rsi_runtime": demo.get("rsi_runtime", {
+                "status": "disabled",
+                "version_id": "base",
+                "policy_hash": "builtin",
+                "prompt_variant": demo.get("prompt_version", "diagnosis-aggregator-v2"),
+                "knowledge_query_terms": [],
+            }),
+            "review_guard_version": review_payload.get("implementation", "deterministic_review_guard_v1") if isinstance(review_payload, dict) else "deterministic_review_guard_v1",
+            "ticket": demo.get("ticket", graph.get("ticket", {})),
+        })
+    with st.expander("RSI 离线演化与评测素材"):
+        presentation = demo.get("presentation") if isinstance(demo.get("presentation"), dict) else {}
+        st.json(presentation or {
+            "status": "flow_validation",
+            "rsi": "candidate → replay → gate → human approval → publish → rollback",
+            "evaluation": "visual/process/route/agent/system cards are reproducible summaries",
+            "claim_policy": "结构验证，不代表模型精度或真实过热度测量",
+        })
+        evaluation_path, evaluation_report = _load_latest_evaluation_report()
+        if evaluation_report:
+            evaluation_freeze = evaluation_report.get("evaluation_freeze")
+            if isinstance(evaluation_freeze, dict):
+                st.markdown("**评测集冻结与研究结论资格**")
+                frozen = bool(evaluation_freeze.get("frozen"))
+                claimable = bool(evaluation_freeze.get("claimable"))
+                freeze_status, claim_status = st.columns(2)
+                freeze_status.metric("评测集冻结状态", "已冻结" if frozen else "未冻结")
+                claim_status.metric("研究结论可声明", "是" if claimable else "否")
+                reason = evaluation_freeze.get("claimability_reason")
+                if reason:
+                    st.caption(str(reason))
+
+                manifest_details = evaluation_freeze.get("manifest_details", {})
+                if isinstance(manifest_details, dict) and manifest_details:
+                    freeze_rows = []
+                    for name, details in sorted(manifest_details.items()):
+                        if not isinstance(details, dict):
+                            details = {}
+                        record_count = details.get("record_count", 0)
+                        valid_count = details.get("valid_record_count", 0)
+                        try:
+                            invalid_count = max(int(record_count) - int(valid_count), 0)
+                        except (TypeError, ValueError):
+                            invalid_count = "—"
+                        errors = details.get("errors", [])
+                        if not isinstance(errors, list):
+                            errors = [str(errors)] if errors else []
+                        invalid_reasons = details.get("invalid_error_counts", {})
+                        if not isinstance(invalid_reasons, dict):
+                            invalid_reasons = {}
+                        freeze_rows.append({
+                            "必需清单": name,
+                            "状态": details.get("status", "unknown"),
+                            "记录数": record_count,
+                            "有效记录": valid_count,
+                            "无效记录": invalid_count,
+                            "字段/审核拒绝原因": "；".join(f"{reason}: {count}" for reason, count in sorted(invalid_reasons.items())) or "无",
+                            "校验错误": "；".join(str(error) for error in errors) or "无",
+                        })
+                    st.dataframe(freeze_rows, use_container_width=True, hide_index=True)
+                elif evaluation_freeze.get("missing_manifests") or evaluation_freeze.get("invalid_manifests"):
+                    st.caption(
+                        "未通过清单："
+                        + "、".join(evaluation_freeze.get("missing_manifests", []) + evaluation_freeze.get("invalid_manifests", []))
+                    )
+
+            quality_eval = evaluation_report.get("image_quality_gate", {})
+            process_eval = evaluation_report.get("process", {}).get("independent_baseline_evaluation", {})
+            attribution = evaluation_report.get("process", {}).get("feature_attribution", {})
+            retrieval_eval = evaluation_report.get("retrieval", {})
+            knowledge_eval = retrieval_eval.get("knowledge", {})
+            citation_eval = knowledge_eval.get("citation_integrity", {})
+            case_eval = retrieval_eval.get("cases", {})
+            knowledge_pack_eval = evaluation_report.get("knowledge_pack_validation", {})
+            jev_eval = evaluation_report.get("jev", {})
+            route_flow_eval = evaluation_report.get("route_flow", {})
+            multi_agent_eval = evaluation_report.get("multi_agent", {})
+            worker_eval = evaluation_report.get("worker_execution", {})
+            system_eval = evaluation_report.get("system", {})
+            input_integrity = evaluation_report.get("input_integrity", {})
+            task_latency = system_eval.get("end_to_end_latency", {})
+            node_latency = system_eval.get("node_latency", {})
+            runtime_health_claimable = bool(system_eval.get("runtime_scope", {}).get("claimable") and system_eval.get("event_count", 0))
+            def _percent(value):
+                return f"{value:.0%}" if isinstance(value, (int, float)) else "—"
+
+            transitions = route_flow_eval.get("transitions", {})
+            if not isinstance(transitions, dict):
+                transitions = {}
+            transition_summary = "、".join(
+                f"{name} {count} 次" for name, count in sorted(transitions.items())
+            ) if transitions else "无路由转移记录"
+
+            rows = [
+                {"评测项": "质量门控失败样本", "结果": f"{quality_eval.get('failure_detected_count', 0)}/{quality_eval.get('failure_sample_count', 0)}", "性质": "合成规则回归", "可声明": "否"},
+                {"评测项": "知识检索查询", "结果": f"{knowledge_eval.get('query_count', 0)} 条 · {_percent(knowledge_eval.get('fixture_pass_rate'))}", "性质": "demo fixture", "可声明": "否"},
+                {"评测项": "知识引用字段完整性", "结果": f"{citation_eval.get('valid_citation_count', 0)}/{citation_eval.get('citation_count', 0)} · {_percent(citation_eval.get('pass_rate'))}", "性质": "source/version/locator fixture 检查", "可声明": "否 · 不含语义蕴含"},
+                {"评测项": "工艺知识包结构", "结果": f"{knowledge_pack_eval.get('valid_record_count', 0)}/{knowledge_pack_eval.get('record_count', 0)}", "性质": knowledge_pack_eval.get("status", "not_run"), "可声明": "否 · 内容需专家审核"},
+                {"评测项": "案例检索查询", "结果": f"{case_eval.get('query_count', 0)} 条 · {_percent(case_eval.get('fixture_pass_rate'))}", "性质": "demo fixture", "可声明": "否"},
+                {"评测项": "JEV 路由回归", "结果": f"{jev_eval.get('fixture_count', 0)} 条 · {_percent(jev_eval.get('fixture_route_match_rate'))}", "性质": "安全 fixture", "可声明": "否"},
+                {"评测项": "JEV 四路 fixture 召回", "结果": " / ".join(_percent(jev_eval.get(key)) for key in ("simple_fixture_recall", "complex_fixture_full_recall", "retake_fixture_recall", "human_fixture_recall")), "性质": "simple / full / retake / human", "可声明": "否 · policy fixture"},
+                {"评测项": "simple/full 路径流转", "结果": f"{route_flow_eval.get('run_count', 0)} 次 · 升级 {route_flow_eval.get('upgrade_count', 0)} · {_percent(route_flow_eval.get('upgrade_rate'))} · {transition_summary}", "性质": "运行轨迹审计", "可声明": "否 · 流程验证"},
+                {"评测项": "Worker 策略执行", "结果": f"{worker_eval.get('worker_count', 0)} 个 · 重试 {worker_eval.get('retry_total', 0)} · 超时 {worker_eval.get('timeout_worker_count', 0)} · 策略覆盖 {_percent(worker_eval.get('policy_coverage_rate'))}", "性质": "AgentResult 执行元数据", "可声明": "否 · 流程完整性"},
+                {"评测项": "评测输入完整性", "结果": input_integrity.get("status", "not_run"), "性质": "JSONL 解析与范围检查", "可声明": "是" if input_integrity.get("claimable") else "否"},
+                {"评测项": "节点失败 / 超时 / 重试", "结果": " / ".join(_percent(system_eval.get(key)) for key in ("node_failure_rate", "timeout_rate", "retry_rate")), "性质": "runtime 节点事件率", "可声明": "是" if runtime_health_claimable else "否 · scope 未限定"},
+                {"评测项": "运行 Fallback", "结果": _percent(system_eval.get("fallback_rate")), "性质": "runtime 任务比例", "可声明": "是" if runtime_health_claimable else "否 · scope 未限定"},
+                {"评测项": "任务端到端耗时 P50/P95/P99", "结果": " / ".join("—" if task_latency.get(key) is None else f"{task_latency[key]:.0f} ms" for key in ("p50_ms", "p95_ms", "p99_ms")), "性质": "显式 run_id 后可评估", "可声明": "是" if task_latency.get("claimable") else "否 · 当前范围混合"},
+                {"评测项": "节点耗时 P50/P95/P99", "结果": " / ".join("—" if node_latency.get(key) is None else f"{node_latency[key]:.0f} ms" for key in ("p50_ms", "p95_ms", "p99_ms")), "性质": "节点事件统计", "可声明": "是" if node_latency.get("claimable") else "否 · 当前范围混合"},
+            ]
+            rows.append({
+                "评测项": "Full-loop Agent 交接",
+                "结果": f"{multi_agent_eval.get('present_worker_slots', 0)}/{multi_agent_eval.get('expected_worker_slots', 0)} 个 Agent · 失败 {multi_agent_eval.get('failed_worker_slots', 0)} · 来源链问题 {multi_agent_eval.get('source_lineage_violations', 0)}",
+                "性质": multi_agent_eval.get("status", "not_run"),
+                "可声明": "否 · 流程完整性",
+            })
+            for model_name, metrics in process_eval.get("models", {}).items():
+                roc_auc = metrics.get("roc_auc")
+                pr_auc = metrics.get("pr_auc")
+                rows.append({
+                    "评测项": f"过程基线 {model_name}",
+                    "结果": f"ROC-AUC {roc_auc:.3f} · PR-AUC {pr_auc:.3f}" if isinstance(roc_auc, (int, float)) and isinstance(pr_auc, (int, float)) else "—",
+                    "性质": f"{process_eval.get('status', 'experimental_baseline')} · 对齐 {evaluation_report.get('process', {}).get('alignment_quality', 'unknown')}",
+                    "可声明": "否 · 独立过程任务",
+                })
+            for result in attribution.get("test_comparison", []):
+                roc_auc = result.get("roc_auc")
+                pr_auc = result.get("pr_auc")
+                rows.append({
+                    "评测项": f"过程输入 {result.get('candidate', 'candidate')} ({result.get('feature_count', '—')} 维)",
+                    "结果": f"ROC-AUC {roc_auc:.3f} · PR-AUC {pr_auc:.3f}" if isinstance(roc_auc, (int, float)) and isinstance(pr_auc, (int, float)) else "—",
+                    "性质": "单次实验 · 测试集最终对照",
+                    "可声明": "否 · 实验基线",
+                })
+            st.caption(f"评测来源：{evaluation_path.name} · runtime 范围：{system_eval.get('runtime_scope', {}).get('scope', 'unknown')}")
+            st.dataframe(rows, use_container_width=True, hide_index=True)
+            delivery_path, delivery = _load_latest_delivery_snapshot()
+            if delivery:
+                st.caption(
+                    f"交付快照：{delivery_path.name} · 状态 {delivery.get('status', 'unknown')} · "
+                    f"视频 run {delivery.get('finished_run_count', 0)} · JEV fixture {delivery.get('route_fixture_count', '—')}"
+                )
+                st.json({
+                    "status": delivery.get("status"),
+                    "selected_run_ids": delivery.get("selected_run_ids", []),
+                    "hitl_actions": delivery.get("hitl_actions", {}),
+                    "rsi_runtime": delivery.get("rsi_runtime", {}),
+                    "errors": delivery.get("errors", []),
+                    "claims": delivery.get("claims", {}),
+                })
+            if attribution.get("validation_selected_features"):
+                st.caption("验证集归因候选（相关性分析）：" + "、".join(attribution["validation_selected_features"]))
+        else:
+            st.info("尚未生成评测汇总。")
+    with st.expander("诊断与复核 JSON"):
+        st.json({"diagnosis": graph.get("result", {}).get("diagnosis", graph.get("diagnosis", {})), "review": graph.get("result", {}).get("review", graph.get("review", {})), "evidence_bundle": graph.get("result", {}).get("evidence_bundle", [])})
+    with st.container(border=True):
+        st.markdown('<h4 class="ptitle">报告归档与运行审计</h4>', unsafe_allow_html=True)
+        service = HumanReviewService(_modern_runtime_root())
+        report = None
+        if demo.get("schema_version") == "presentation-demo-1":
+            review_status = (demo.get("human_review") or {}).get("status")
+            if review_status in {"completed", "waiting_for_retake"}:
+                report = _presentation_report(demo)
+        else:
+            try:
+                report = service.report(demo["run_id"])
+            except Exception:
+                report = None
+        if report:
+            audit = report.get("audit") or report.get("human_review") or {}
+            st.caption(f"归档状态：{report.get('status', '—')} · 人工动作：{audit.get('action', 'pending')} · 审核人：{audit.get('reviewer_id', '—')}")
+            if demo.get("schema_version") == "presentation-demo-1":
+                exports = _presentation_report_exports(demo, report)
+                report_json, report_md, report_html, report_png = exports["json"], exports["markdown"], exports["html"], exports["png"]
+            else:
+                report_json = service.export_report(demo["run_id"], "json")
+                report_md = service.export_report(demo["run_id"], "markdown")
+                report_html = service.export_report(demo["run_id"], "html")
+                report_png = None
+                png_path = _modern_runtime_root() / "presentation_exports" / f"{demo['run_id']}.png"
+                try:
+                    service.export_report(demo["run_id"], "png", destination=png_path)
+                    if png_path.exists():
+                        report_png = png_path.read_bytes()
+                except Exception:
+                    report_png = None
+            ex1, ex2, ex3, ex4 = st.columns(4)
+            with ex1:
+                st.download_button("下载 JSON 报告", report_json, file_name=f"{demo['run_id']}.json", mime="application/json", key="modern_report_json", use_container_width=True)
+            with ex2:
+                st.download_button("下载 Markdown 报告", report_md, file_name=f"{demo['run_id']}.md", mime="text/markdown", key="modern_report_md", use_container_width=True)
+            with ex3:
+                st.download_button("下载 HTML 报告", report_html, file_name=f"{demo['run_id']}.html", mime="text/html", key="modern_report_html", use_container_width=True)
+            with ex4:
+                if report_png:
+                    st.download_button("下载 PNG 报告", report_png, file_name=f"{demo['run_id']}.png", mime="image/png", key="modern_report_png", use_container_width=True)
+                else:
+                    st.caption("PNG 报告暂不可用")
+            st.json({"run_id": demo.get("run_id"), "thread_id": demo.get("thread_id"), "route": report.get("route"), "review": audit, "report_id": (ticket.get("report_id") if isinstance(ticket, dict) else None)})
+        else:
+            st.info("人工确认完成后可在此导出归档报告。")
+
+
+def page_agent():
+    """Multi-agent collaboration page with graph, evidence, and node outputs."""
+    if run_modern_demo is not None:
+        _render_modern_agent_page()
+        return
+    ss = st.session_state
+    result = ss.get("agent_result")
+    st.markdown('<h4 class="ptitle big">多智能体协作流程</h4>', unsafe_allow_html=True)
+    st.caption("该页面调用本地 LangGraph 工作流；默认由一次 Qwen3-VL 诊断和一次快速规则复核组成。")
+
+    if run_diagnosis_trace is None:
+        st.warning("当前环境未安装多智能体可选依赖，原有视觉分析页面仍可正常使用。")
+        st.code("cd D:\\py_daima\\mars-agent\n"
+                "D:\\py_daima\\.venvs\\mars-agent\\Scripts\\python.exe -m pip install -r Code\\agentic\\requirements.txt",
+                language="powershell")
+        return
+
+    ctl1, ctl2, ctl3 = st.columns([1.5, 1.5, 5.0])
+    with ctl1:
+        if st.button("▶ 运行协作", type="primary", key="run_agent_page"):
+            run_agent_diagnosis()
+            st.rerun()
+    with ctl2:
+        if st.button("清除流程", key="clear_agent_page"):
+            ss.agent_result = None
+            ss.agent_error = None
+            ss.agent_trace = []
+            ss.agent_workflow = None
+            ss.agent_source_sig = None
+            st.rerun()
+    with ctl3:
+        if ss.get("src_name"):
+            st.markdown(f"当前输入：`{ss.src_name}`", unsafe_allow_html=False)
+        else:
+            st.markdown("当前输入：尚未载入")
+
+    with st.container(border=True):
+        st.markdown('<h4 class="ptitle">协作状态图</h4>', unsafe_allow_html=True)
+        st.plotly_chart(agent_flow_chart(result, ss.get("agent_trace")), use_container_width=True,
+                         config={"displayModeBar": False})
+        if result:
+            status = result.get("status", "unknown")
+            label = {"evidence_review_passed": "证据复核通过",
+                     "needs_human_review": "需要人工复核",
+                     "insufficient_visual_evidence": "视觉证据不足"}.get(status, status)
+            st.info(f"最终门控：{label}。本流程不会自动下发加料、调压等工艺控制指令。")
+            if result.get("run_id"):
+                st.caption(f"运行 ID：`{result['run_id']}`。人工审核后可用 `python -m agentic.review` 记录决策。")
+        else:
+            st.caption("运行后，这里会显示每个 Agent 的成功、失败或待复核状态。")
+
+    trace = ss.get("agent_trace", [])
+    completed_trace = [event for event in trace if event.get("status") in {"completed", "error"}]
+    if completed_trace:
+        trace_rows = []
+        labels = {
+            "perception_agent": "视觉感知 Agent",
+            "knowledge_agent": "工艺知识 Agent",
+            "diagnosis_agent": "多模态诊断 Agent",
+            "review_agent": "证据复核 Agent",
+            "finalize": "人工复核门控",
+        }
+        for event in completed_trace:
+            summary = event.get("summary") or {}
+            trace_rows.append({
+                "节点": labels.get(event.get("node"), event.get("node")),
+                "状态": "完成" if event.get("status") == "completed" else "错误",
+                "耗时(ms)": event.get("elapsed_ms", "—"),
+                "摘要": json.dumps(summary, ensure_ascii=False),
+            })
+        with st.container(border=True):
+            st.markdown('<h4 class="ptitle">本次运行轨迹</h4>', unsafe_allow_html=True)
+            st.dataframe(trace_rows, width="stretch", hide_index=True, height=218)
+
+    if ss.get("agent_error"):
+        st.error(f"流程在节点执行时中断：{ss.agent_error}")
+
+    if not result:
+        return
+
+    visual = result.get("visual", {})
+    diagnosis = result.get("diagnosis", {})
+    review = result.get("review", {})
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("视觉分类", visual.get("class_label", "未识别"))
+    c2.metric("分类置信度", f"{float(visual.get('confidence', 0.0)) * 100:.1f}%")
+    c3.metric("检索来源", len(result.get("knowledge_sources", [])))
+    c4.metric("复核状态", "通过" if review.get("approved") else "待复核")
+
+    st.markdown('<h4 class="ptitle">节点输出与证据</h4>', unsafe_allow_html=True)
+    with st.expander("1 · 视觉取证 Agent：YOLO ROI + F-GMVAE-T", expanded=True):
+        st.json(visual)
+    with st.expander("2 · 知识检索 Agent：本地 Markdown / TXT"):
+        st.json(result.get("knowledge_sources", []))
+    with st.expander("3 · 诊断 Agent：Qwen3-VL 结构化 JSON", expanded=True):
+        st.json(diagnosis)
+    with st.expander("4 · 证据复核 Agent：是否允许通过", expanded=True):
+        st.json(review)
+    with st.expander("LangGraph 工作流定义（可复制到 Mermaid 工具）"):
+        spec = ss.get("agent_workflow") or (workflow_spec() if workflow_spec else {})
+        st.code(
+            "graph LR\n"
+            + "\n".join(
+                f"    {node['id']}[{node['label']}]"
+                for node in spec.get("nodes", [])
+            )
+            + "\n"
+            + "\n".join(
+                f"    {edge['source']} --> {edge['target']}"
+                for edge in spec.get("edges", [])
+            ),
+            language="mermaid",
+        )
+
+
 def page_perf():
     ss = st.session_state
     results = ss.results or []
@@ -986,17 +2196,82 @@ def page_dosing():
 # ============================================================
 # 4) 历史管理
 # ============================================================
-def page_history():
+def _render_modern_review_history():
+    st.divider()
+    st.subheader("多智能体审核记录")
+    if HumanReviewService is None:
+        st.info("多智能体审核存储当前不可用。")
+        return
+
+    service = HumanReviewService(_modern_runtime_root())
+    events = service.history(limit=1000)
+    run_filter, route_filter, status_filter, model_filter, date_filter = st.columns([2.0, 1.1, 1.3, 1.3, 1.2])
+    run_query = run_filter.text_input("run_id", key="modern_history_run_filter").strip().lower()
+    routes = sorted({str(row.get("route", "")) for row in events if row.get("route")})
+    route = route_filter.selectbox("诊断路由", ["全部", *routes], key="modern_history_route_filter")
+    statuses = sorted({str(row.get("review_status", row.get("status", ""))) for row in events if row.get("review_status", row.get("status"))})
+    review_status = status_filter.selectbox("审核结果", ["全部", *statuses], key="modern_history_status_filter")
+    model_profiles = sorted({str(row.get("model_profile", "")) for row in events if row.get("model_profile")})
+    model_profile = model_filter.selectbox("模型 Profile", ["全部", *model_profiles], key="modern_history_model_filter")
+    date_query = date_filter.text_input("日期", key="modern_history_date_filter", placeholder="YYYY-MM-DD").strip()
+
+    visible = [row for row in events
+               if (not run_query or run_query in str(row.get("run_id", "")).lower())
+               and (route == "全部" or row.get("route") == route)
+               and (review_status == "全部" or row.get("review_status", row.get("status")) == review_status)
+               and (model_profile == "全部" or row.get("model_profile") == model_profile)
+               and (not date_query or str(row.get("decided_at", "")).startswith(date_query))]
+    st.caption(f"{len(visible)} 条审核记录")
+    if not visible:
+        st.info("当前筛选条件下没有多智能体审核记录。")
+        return
+
+    display_rows = [{
+        "时间": row.get("decided_at", ""),
+        "run_id": row.get("run_id", ""),
+        "路由": row.get("route", ""),
+        "风险": row.get("risk_level", "unknown"),
+        "审核动作": row.get("action", ""),
+        "审核结果": row.get("review_status", row.get("status", "")),
+        "审核人": row.get("reviewer_id", ""),
+        "模型": row.get("model_profile", ""),
+    } for row in reversed(visible)]
+    st.dataframe(display_rows, width="stretch", hide_index=True)
+
+    selected = st.selectbox(
+        "查看诊断报告",
+        list(range(len(visible))),
+        key="modern_history_report_pick",
+        format_func=lambda index: f"{visible[index].get('run_id', '')} · {visible[index].get('action', '')} · {visible[index].get('decided_at', '')}",
+    )
+    run_id = str(visible[selected].get("run_id", ""))
+    try:
+        report = service.report(run_id)
+        with st.expander("报告与审核证据", expanded=False):
+            st.json(report)
+            json_report = service.export_report(run_id, "json")
+            markdown_report = service.export_report(run_id, "markdown")
+            html_report = service.export_report(run_id, "html")
+            download_json, download_markdown, download_html = st.columns(3)
+            download_json.download_button("JSON", json_report, file_name=f"{run_id}.json", mime="application/json", key="modern_history_report_json")
+            download_markdown.download_button("Markdown", markdown_report, file_name=f"{run_id}.md", mime="text/markdown", key="modern_history_report_md")
+            download_html.download_button("HTML", html_report, file_name=f"{run_id}.html", mime="text/html", key="modern_history_report_html")
+    except Exception as exc:
+        st.warning(f"审核记录存在，但关联报告暂不可读取：{exc}")
+
+
+def _render_history_page_contents():
     records = history_store.load_records()
     s = history_store.stats(records)
 
-    stat_cards([
-        ("总记录", s["total"], CYAN),
-        ("今日新增", s["today"], "#8ba4ff"),
-        ("报警次数", s["alarms"], "#ff9a90"),
-        ("含AI报告", s["with_report"], "#a58bff"),
-        ("最近一次", str(s["last_time"])[-8:] if s["total"] else "—", "#ffb020"),
-    ])
+    with st.container(key="historykpis"):
+        stat_cards([
+            ("总记录", s["total"], CYAN),
+            ("今日新增", s["today"], "#8ba4ff"),
+            ("报警次数", s["alarms"], "#ff9a90"),
+            ("含AI报告", s["with_report"], "#a58bff"),
+            ("最近一次", str(s["last_time"])[-8:] if s["total"] else "—", "#ffb020"),
+        ])
 
     left, right = st.columns([5.6, 4.4])
 
@@ -1035,7 +2310,36 @@ def page_history():
                         '到「过程诊断」上传图片/视频并点「启动分析」即可产生记录。</div></div>',
                         unsafe_allow_html=True)
         else:
-            st.dataframe(df, width="stretch", height=300, hide_index=True)
+            with st.container(key="historytable"):
+                st.dataframe(df, width="stretch", height=300, hide_index=True)
+            cards = []
+            for row in df.to_dict(orient="records"):
+                time_label = html.escape(str(row.get("时间", "—") or "—"))
+                status = html.escape(str(row.get("状态", row.get("代码", "—")) or "—"))
+                confidence = row.get("置信度")
+                confidence_text = f"{float(confidence or 0) * 100:.1f}%"
+                fields = (
+                    ("槽号", row.get("槽号", "—")),
+                    ("来源", row.get("来源", "—")),
+                    ("置信度", confidence_text),
+                    ("灰度 / 对比度", f'{row.get("平均灰度", "—")} / {row.get("对比度", "—")}'),
+                    ("饱和度", row.get("饱和度", "—")),
+                    ("报警", row.get("报警", "否")),
+                )
+                field_parts = []
+                for label, value in fields:
+                    display_value = "—" if value is None or value == "" else value
+                    field_parts.append(
+                        f"<div><span>{html.escape(label)}</span><br>"
+                        f"<b>{html.escape(str(display_value))}</b></div>"
+                    )
+                cards.append(
+                    "<article class='history-record-card'>"
+                    f"<div class='history-record-head'><strong>{time_label}</strong>"
+                    f"<span class='history-record-status'>{status}</span></div>"
+                    f"<div class='history-record-fields'>{''.join(field_parts)}</div></article>"
+                )
+            st.markdown("<div class='history-mobile-list'>" + "".join(cards) + "</div>", unsafe_allow_html=True)
 
     with right:
         if not records:
@@ -1075,6 +2379,13 @@ def page_history():
                                     f'{r["ai_report"][:1200]}</div>', unsafe_allow_html=True)
                 else:
                     st.markdown('<div class="muted">左侧筛选后无可选记录</div>', unsafe_allow_html=True)
+
+    _render_modern_review_history()
+
+
+def page_history():
+    with st.container(key="historypage"):
+        _render_history_page_contents()
 
 
 # ============================================================
@@ -1176,7 +2487,7 @@ def top_nav():
 # ============================================================
 # 主入口
 # ============================================================
-ANALYSIS_PAGES = ("perf", "diagnose", "dosing")
+ANALYSIS_PAGES = ("perf", "diagnose", "dosing", "agent")
 
 
 def main():
@@ -1197,6 +2508,8 @@ def main():
             page_diagnose()
         elif page == "dosing":
             page_dosing()
+        elif page == "agent":
+            page_agent()
         elif page == "history":
             page_history()
         else:

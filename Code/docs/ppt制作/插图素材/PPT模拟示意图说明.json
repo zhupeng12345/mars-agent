@@ -1,0 +1,48 @@
+{
+  "notice": "All plotted values are synthetic illustrative data; do not cite as measurements, training results, or evaluation results.",
+  "seed": 20261110,
+  "figures": [
+    {
+      "kind": "synthetic illustrative distribution",
+      "seed": 20261110,
+      "components": 3,
+      "curves": [
+        "static visual representation",
+        "dynamic temporal representation",
+        "fuzzy expert guide",
+        "fused mixture prior"
+      ],
+      "is_measured_data": false,
+      "is_model_output": false
+    },
+    {
+      "kind": "synthetic illustrative multivariate time series",
+      "seed": 20261110,
+      "steps": 60,
+      "variables": [
+        "槽电压",
+        "槽电流",
+        "设定电压",
+        "电压上限",
+        "电压下限",
+        "效应等待",
+        "波动量",
+        "波动差",
+        "电压斜率",
+        "累计斜率",
+        "基准加料间隔",
+        "实际加料间隔",
+        "加料状态",
+        "阳极移动状态"
+      ],
+      "groups": {
+        "electrical": 5,
+        "fluctuation": 4,
+        "feeding": 3,
+        "equipment": 2
+      },
+      "is_measured_data": false,
+      "is_model_output": false
+    }
+  ]
+}

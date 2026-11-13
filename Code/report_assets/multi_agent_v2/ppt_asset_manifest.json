@@ -1,0 +1,711 @@
+{
+  "schema_version": "ppt-asset-manifest-1",
+  "generated_at": "2026-11-10T19:02:51.646579+00:00",
+  "page_count": 25,
+  "runtime_demo_count": 26,
+  "image_asset_count": 42,
+  "pages": [
+    {
+      "page": 1,
+      "title": "项目目标",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-01.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\index.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.sidecar.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-01.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 2,
+      "title": "巡检输入",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-02.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\index.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.sidecar.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-02.png"
+      ],
+      "supporting_image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-49feb5bc5abb-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-6af401e9eb16-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-7da86fdaa68a-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-7f83f86889bb-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-86a7239e923f-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-917f241908b0-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-96ac3d586bf8-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-a409b95ce0d8-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-a4b62388bac6-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-ace23204682f-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bb66add58542-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bbb025d8548c-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bf45515c47bd-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bf977a126d6a-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-c2aad07d20e6-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-c6fd5140ca49-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-cb3c0e7a3dd7-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-01.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-02.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-03.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-04.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-05.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-06.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-07.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-08.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-09.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-10.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-11.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-12.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-13.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-14.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-15.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-16.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-17.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-18.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-19.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-20.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-21.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-22.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-23.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-24.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-25.png"
+      ],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 3,
+      "title": "火眼视觉证据",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-03.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\index.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.sidecar.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-03.png"
+      ],
+      "supporting_image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-49feb5bc5abb-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-6af401e9eb16-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-7da86fdaa68a-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-7f83f86889bb-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-86a7239e923f-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-917f241908b0-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-96ac3d586bf8-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-a409b95ce0d8-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-a4b62388bac6-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-ace23204682f-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bb66add58542-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bbb025d8548c-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bf45515c47bd-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bf977a126d6a-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-c2aad07d20e6-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-c6fd5140ca49-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-cb3c0e7a3dd7-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-01.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-02.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-03.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-04.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-05.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-06.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-07.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-08.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-09.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-10.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-11.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-12.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-13.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-14.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-15.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-16.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-17.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-18.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-19.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-20.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-21.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-22.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-23.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-24.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-25.png"
+      ],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 4,
+      "title": "多帧窗口",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-04.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\index.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.sidecar.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-04.png"
+      ],
+      "supporting_image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-49feb5bc5abb-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-6af401e9eb16-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-7da86fdaa68a-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-7f83f86889bb-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-86a7239e923f-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-917f241908b0-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-96ac3d586bf8-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-a409b95ce0d8-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-a4b62388bac6-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-ace23204682f-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bb66add58542-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bbb025d8548c-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bf45515c47bd-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bf977a126d6a-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-c2aad07d20e6-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-c6fd5140ca49-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-cb3c0e7a3dd7-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-01.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-02.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-03.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-04.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-05.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-06.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-07.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-08.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-09.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-10.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-11.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-12.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-13.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-14.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-15.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-16.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-17.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-18.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-19.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-20.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-21.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-22.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-23.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-24.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-25.png"
+      ],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 5,
+      "title": "质量门控",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-05.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\index.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.sidecar.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-05.png"
+      ],
+      "supporting_image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-49feb5bc5abb-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-6af401e9eb16-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-7da86fdaa68a-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-7f83f86889bb-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-86a7239e923f-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-917f241908b0-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-96ac3d586bf8-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-a409b95ce0d8-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-a4b62388bac6-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-ace23204682f-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bb66add58542-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bbb025d8548c-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bf45515c47bd-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bf977a126d6a-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-c2aad07d20e6-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-c6fd5140ca49-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-cb3c0e7a3dd7-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-01.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-02.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-03.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-04.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-05.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-06.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-07.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-08.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-09.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-10.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-11.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-12.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-13.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-14.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-15.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-16.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-17.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-18.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-19.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-20.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-21.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-22.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-23.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-24.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-25.png"
+      ],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 6,
+      "title": "标注与数据协议",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-06.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-06.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 7,
+      "title": "总体架构",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-07.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\index.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.sidecar.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-07.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 8,
+      "title": "任务状态机",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-08.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\index.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.sidecar.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-08.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 9,
+      "title": "Process State Agent",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-09.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-09.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 10,
+      "title": "14维变量分组",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-10.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-10.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 11,
+      "title": "非配对数据治理",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-11.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-11.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 12,
+      "title": "F-GMVAE-T",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-12.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-12.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 13,
+      "title": "时序编码器",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-13.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-13.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 14,
+      "title": "JEV路由",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-14.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\index.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.sidecar.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-14.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 15,
+      "title": "simple_loop",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-15.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\index.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.sidecar.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-15.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 16,
+      "title": "full_loop并行协作",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-16.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\index.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.sidecar.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-16.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 17,
+      "title": "知识RAG",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-17.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-17.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 18,
+      "title": "特殊案例库",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-18.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-18.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 19,
+      "title": "证据复核",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-19.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-19.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 20,
+      "title": "LLM Gateway",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-20.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-20.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 21,
+      "title": "人工interrupt/resume",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-21.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\index.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.sidecar.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-21.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 22,
+      "title": "审计与报告",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-22.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-22.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 23,
+      "title": "RSI候选演化",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-23.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-23.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 24,
+      "title": "冻结评测与消融",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-24.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\evaluation_report.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-24.png"
+      ],
+      "supporting_image_assets": [],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    },
+    {
+      "page": 25,
+      "title": "端到端演示",
+      "source_files": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-25.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\index.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\index.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\bad_quality.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\conflict_high_risk.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\ood_unknown_case.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\simple_upgrade.sidecar.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.json",
+        "D:\\py_daima\\mars-agent\\Code\\runtime_data\\presentation_demo\\stable_case.sidecar.json"
+      ],
+      "image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-25.png"
+      ],
+      "supporting_image_assets": [
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-49feb5bc5abb-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-6af401e9eb16-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-7da86fdaa68a-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-7f83f86889bb-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-86a7239e923f-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-917f241908b0-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-96ac3d586bf8-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-a409b95ce0d8-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-a4b62388bac6-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-ace23204682f-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bb66add58542-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bbb025d8548c-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bf45515c47bd-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-bf977a126d6a-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-c2aad07d20e6-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-c6fd5140ca49-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-demo-cb3c0e7a3dd7-contact-sheet.jpg",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-01.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-02.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-03.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-04.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-05.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-06.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-07.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-08.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-09.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-10.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-11.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-12.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-13.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-14.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-15.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-16.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-17.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-18.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-19.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-20.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-21.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-22.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-23.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-24.png",
+        "D:\\py_daima\\mars-agent\\Code\\report_assets\\multi_agent_v2\\asset-page-25.png"
+      ],
+      "status": "flow_validation",
+      "claim_policy": "流程验证/实验版本；没有专家视频标签时不写视觉精度"
+    }
+  ]
+}
